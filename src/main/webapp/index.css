@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Estilo de la tabla */
+table {
+    border-collapse: collapse;
+    width: 300px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Estilo de las celdas */
+th {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Títulos */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Estilo de los inputs */
+input[type="text"],
+input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+/* Cambio de color en el foco */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Estilo del botón */
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Cambio de color en el hover del botón */
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo del mensaje de error */
+p.error-message {
+    color: red;
+    margin-top: 10px;
+}
