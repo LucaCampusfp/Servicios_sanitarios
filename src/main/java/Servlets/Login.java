@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.beans.Statement;
 import java.io.IOException;
@@ -60,6 +61,9 @@ public class Login extends HttpServlet {
 		
 		ServletContext contextApp = this.getServletContext();
 		GestionBD gestionBD = (GestionBD) contextApp.getAttribute("gestionBD");
+		HttpSession sesion = request.getSession();
+		
+		
 		
 		ResultSet rs ;
 	
@@ -80,8 +84,24 @@ public class Login extends HttpServlet {
 			
 			if(verificacion == true) {
 				request.setAttribute("successMessage", "Inicio sesión exitoso");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-				dispatcher.forward(request, response);
+				sesion.setAttribute("GestionBD", gestionBD);
+				
+				if(rs.getString("rol").equals("Operador")) {
+					RequestDispatcher dispatcher = request.getRequestDispatcher("operador.jsp");
+					dispatcher.forward(request, response);
+				}else if(rs.getString("rol").equals("Enfermera")) {
+					RequestDispatcher dispatcher = request.getRequestDispatcher("enfermera.jsp");
+					dispatcher.forward(request, response);
+				}else if(rs.getString("rol").equals("Psicologo")) {
+					RequestDispatcher dispatcher = request.getRequestDispatcher("psicologo.jsp");
+					dispatcher.forward(request, response);
+				}else if(rs.getString("rol").equals("Medico")) {
+					RequestDispatcher dispatcher = request.getRequestDispatcher("medico.jsp");
+					dispatcher.forward(request, response);
+				}
+			
+				
+
 				
 			}else {
 				request.setAttribute("errorMessage", "Usuario o contraseña incorrectos.");

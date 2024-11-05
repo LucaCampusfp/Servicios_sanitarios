@@ -34,7 +34,7 @@ public class GestionBD {
 	
 	
 	public ResultSet obtenerTrabajador() throws SQLException{
-		String consultaSQL = "SELECT n_usuario, pass  FROM trabajadores";
+		String consultaSQL = "SELECT n_usuario, pass, rol  FROM trabajadores";
 		Statement statement = this.conexion.createStatement();
 		
 		return statement.executeQuery(consultaSQL);
