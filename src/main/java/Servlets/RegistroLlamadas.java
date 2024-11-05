@@ -1,5 +1,6 @@
 package Servlets;
 
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,7 +18,29 @@ public class RegistroLlamadas extends HttpServlet {
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		
+		
+		String nombreOperador = request.getParameter("operador");
+		String nombrePaciente = request.getParameter("nombre_llamante");
+		String dniPaciente = request.getParameter("dni_llamante");
+		
+		System.out.println(nombreOperador);
+		System.out.println(nombrePaciente);
+		System.out.println(dniPaciente);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }

@@ -11,7 +11,7 @@
 <h1 style="text-align: center;">Panel de gestión de operadores</h1>
 
 <h2>Registro de Llamadas</h2>
-    <form action="/guardar" method="POST">
+    <form action="RegistroLlamadas" method="POST">
         
         <!-- Información Básica de la Llamada -->
         <fieldset>
@@ -91,7 +91,7 @@
 		
 		
 		        <label for="no_molesta">No</label>
-		        <input type="radio" id="no_molesta" name="llamada_molesta" value="no" checked>
+		        <input type="radio" id="no_molesta" name="llamada_molesta" value="no" >
 		    </div>
 		</fieldset>
 
