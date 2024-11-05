@@ -1,0 +1,36 @@
+public int obtenerUltimoIdLlamada() throws SQLException {
+    String query = "SELECT LAST_INSERT_ID()";
+    try (Statement statement = this.conexion.createStatement();
+         ResultSet rs = statement.executeQuery(query)) {
+        if (rs.next()) {
+            return rs.getInt(1);
+        } else {
+            throw new SQLException("No se pudo obtener el último ID de llamada.");
+        }
+    }
+}
+public int obtenerIdPaciente(String dni) throws SQLException {
+    String query = "SELECT id FROM paciente WHERE dni = ?";
+    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {
+        statement.setString(1, dni);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("id");
+        } else {
+            throw new SQLException("No se encontró el paciente con DNI: " + dni);
+        }
+    }
+}
+
+public int obtenerIdOperador(String nombre) throws SQLException {
+    String query = "SELECT id FROM trabajador WHERE nombre = ?";
+    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {
+        statement.setString(1, nombre);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("id");
+        } else {
+            throw new SQLException("No se encontró el operador con nombre: " + nombre);
+        }
+    }
+}
