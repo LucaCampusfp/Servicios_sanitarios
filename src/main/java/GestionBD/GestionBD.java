@@ -40,6 +40,15 @@ public class GestionBD {
 		return statement.executeQuery(consultaSQL);
 
 	}
+	
+
+	public ResultSet medicoLlamadas() throws SQLException {
+		String consultaSQL = "SELECT * FROM llamada WHERE id_trabajador = 3 AND estado = 'FINALIZADA'";
+		Statement statement = this.conexion.createStatement();
+
+		return statement.executeQuery(consultaSQL);
+
+	}
 
 	public boolean nuevaLLamada(int idPaciente, int idTrabajador, String consejo, String estado,
 			String tipoEspecialista) throws SQLException {
@@ -104,6 +113,7 @@ public class GestionBD {
 	    try (Statement statement = this.conexion.createStatement();
 	         ResultSet rs = statement.executeQuery(query)) {
 	        if (rs.next()) {
+	        
 	            return rs.getInt(1);
 	        } else {
 	            throw new SQLException("No se pudo obtener el último ID de llamada.");
@@ -118,7 +128,8 @@ public class GestionBD {
 	        if (rs.next()) {
 	            return rs.getInt("id_paciente");
 	        } else {
-	            throw new SQLException("No se encontró el paciente con DNI: " + dni);
+	        	System.out.println("No se encontró el paciente con DNI: " + dni);
+	        	return -1;  
 	        }
 	    }
 	}

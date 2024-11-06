@@ -70,13 +70,13 @@ public class Login extends HttpServlet {
 		
 		try {
 			rs = gestionBD.obtenerTrabajador();
-			System.out.println("adios");
+
 			boolean verificacion = false;
 			
 			System.out.println(user);
 			while(rs.next()) {
 				if(user.equals(rs.getString("n_usuario") ) && pass.equals(rs.getString("pass"))) {
-					System.out.println("Hola");
+					
 					verificacion = true;
 					break;
 				}
@@ -87,15 +87,19 @@ public class Login extends HttpServlet {
 				sesion.setAttribute("GestionBD", gestionBD);
 				
 				if(rs.getString("rol").equals("Operador")) {
+					System.out.println("Operador");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("operador.jsp");
 					dispatcher.forward(request, response);
 				}else if(rs.getString("rol").equals("Enfermera")) {
+					System.out.println("Enfermera");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("enfermera.jsp");
 					dispatcher.forward(request, response);
 				}else if(rs.getString("rol").equals("Psicologo")) {
+					System.out.println("Psicologo");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("psicologo.jsp");
 					dispatcher.forward(request, response);
-				}else if(rs.getString("rol").equals("Medico")) {
+				}else if(rs.getString("rol").equals("Médico")) {
+					System.out.println("Medico");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("medico.jsp");
 					dispatcher.forward(request, response);
 				}

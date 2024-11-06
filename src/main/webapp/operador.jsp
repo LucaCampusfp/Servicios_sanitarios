@@ -54,9 +54,9 @@
             <label for="asistencia">Decisión tomada:</label>
             <select id="asistencia" name="asistencia" required>
                 <option value="consejo">Dar consejo</option>
-                <option value="medico">Derivar a médico</option>
-                <option value="enfermera">Derivar a enfermera</option>
-                <option value="psicologo">Derivar a psicólogo</option>
+                <option value="Médico">Derivar a médico</option>
+                <option value="Enfermera">Derivar a enfermera</option>
+                <option value="Psicologo">Derivar a psicólogo</option>
                 <option value="llamada_molesta">Registrar como llamada molesta</option>
             </select><br><br>
 
@@ -79,9 +79,9 @@
 		    <label for="tipo_derivacion">Tipo de derivación:</label>
 		    <select id="tipo_derivacion" name="tipo_derivacion">
 		        <option value="ninguno">Ninguno</option>
-		        <option value="medico">Médico</option>
-		        <option value="enfermera">Enfermera</option>
-		        <option value="psicologo">Psicólogo</option>
+		        <option value="Médico">Médico</option>
+		        <option value="Enfermera">Enfermera</option>
+		        <option value="Psicologo">Psicólogo</option>
 		    </select><br><br>
 		
 		    <label>¿Es una llamada molesta?</label><br>
