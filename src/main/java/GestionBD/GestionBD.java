@@ -78,4 +78,62 @@ public class GestionBD {
 			throw e;
 		}
 	}
+	
+	public boolean nuevoPaciente(String nombre, String dni, int idTrabajador) throws SQLException {
+	    String insertSQL = "INSERT INTO paciente (nombre, dni, id_trabajador) VALUES (?, ?, ?)";
+	    try (PreparedStatement statement = this.conexion.prepareStatement(insertSQL)) {
+	        statement.setString(1, nombre);
+	        statement.setString(2, dni);
+	       
+	        statement.setInt(3, idTrabajador);
+	        
+	        
+	        int rowsInserted = statement.executeUpdate(); // Ejecuta la inserción
+	        return rowsInserted > 0; // Retorna true si se insertó exitosamente
+	    } catch (SQLException e) {
+	        System.out.println("Error al insertar el paciente: " + e.getMessage());
+	        throw e;
+	    }
+	}
+
+	
+	
+	
+	public int nuevoIdLLamada() throws SQLException {
+	    String query = "SELECT LAST_INSERT_ID()";
+	    try (Statement statement = this.conexion.createStatement();
+	         ResultSet rs = statement.executeQuery(query)) {
+	        if (rs.next()) {
+	            return rs.getInt(1);
+	        } else {
+	            throw new SQLException("No se pudo obtener el último ID de llamada.");
+	        }
+	    }
+	}
+	public int idPaciente(String dni) throws SQLException {
+	    String query = "SELECT id_paciente FROM paciente WHERE dni = ?";
+	    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {
+	        statement.setString(1, dni);
+	        ResultSet rs = statement.executeQuery();
+	        if (rs.next()) {
+	            return rs.getInt("id_paciente");
+	        } else {
+	            throw new SQLException("No se encontró el paciente con DNI: " + dni);
+	        }
+	    }
+	}
+
+	public int idTrabajador(String nombre) throws SQLException {
+	    String query = "SELECT id_user FROM trabajadores WHERE n_usuario = ?";
+	    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {
+	        statement.setString(1, nombre);
+	        ResultSet rs = statement.executeQuery();
+	        if (rs.next()) {
+	            return rs.getInt("id_user");
+	        } else {
+	            throw new SQLException("No se encontró el operador con nombre: " + nombre);
+	        }
+	    }
+	}
+
 }

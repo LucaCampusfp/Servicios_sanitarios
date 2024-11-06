@@ -70,34 +70,55 @@ public class RegistroLlamadas extends HttpServlet {
 		String llamadaMolesta = request.getParameter("llamada_molesta");
 
 		/*----------------------------------------------------------------*/
+		
+		
+		
+		try {
+			int id_paciente = gestionBD.idPaciente(dniPaciente);
+			int id_Trabajador = gestionBD.idTrabajador(nombreOperador);
+			gestionBD.nuevoPaciente(nombrePaciente, dniPaciente, id_Trabajador);
+			
+			if (nombreOperador.isBlank() || nombrePaciente.isBlank() || dniPaciente.isBlank() || pregunta1.isBlank()
+					|| pregunta2.isBlank() || pregunta3.isBlank() || respuesta1.isBlank() || respuesta2.isBlank()
+					|| respuesta3.isBlank() || asistencia.isBlank() || derivado.isBlank() || tipo_derivacion.isBlank()
+					|| llamadaMolesta.isBlank()) {
+				// Código a ejecutar si alguna de las variables está en blanco
 
-		if (nombreOperador.isBlank() || nombrePaciente.isBlank() || dniPaciente.isBlank() || pregunta1.isBlank()
-				|| pregunta2.isBlank() || pregunta3.isBlank() || respuesta1.isBlank() || respuesta2.isBlank()
-				|| respuesta3.isBlank() || asistencia.isBlank() || derivado.isBlank() || tipo_derivacion.isBlank()
-				|| llamadaMolesta.isBlank()) {
-			// Código a ejecutar si alguna de las variables está en blanco
+				System.out.println("Se ha derivado a una llamada pendiente");
+				
+				
+				
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, "PENDIENTE", derivado);
+					
+					int id_llamada = gestionBD.nuevoIdLLamada();
+					
+					
+					gestionBD.nuevaPregunta(id_llamada, preguntas, respuestas);
+					
+					
+					System.out.println("Se ha podido generar perfectamente la llamada ELSE");
+				
+			} else {
+				
+				System.out.println("Se ha completado y finalizado la consulta");
+				
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, "FINALIZADA", derivado);
+					
+					int id_llamada = gestionBD.nuevoIdLLamada();
+					
+					
+					gestionBD.nuevaPregunta(id_llamada, preguntas, respuestas);
+					System.out.println("Se ha podido generar perfectamente la llamada ELSE");
+			
+			}
 
-			System.out.println("Se ha derivado a una llamada pendiente");
-			try {
-				gestionBD.nuevaLLamada(1, 1, consejo, "PENDIENTE", derivado);
-				gestionBD.nuevaPregunta(1, preguntas, respuestas);
-				System.out.println("Se ha podido generar perfectamente la llamada ELSE");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("Se ha completado y finalizado la consulta");
-			try {
-				gestionBD.nuevaLLamada(1, 1, consejo, "FINALIZADA", derivado);
-				gestionBD.nuevaPregunta(1, preguntas, respuestas);
-				System.out.println("Se ha podido generar perfectamente la llamada ELSE");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 
+		
 	}
 
 }

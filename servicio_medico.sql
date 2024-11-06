@@ -15,7 +15,6 @@ CREATE TABLE paciente (
 	id_paciente INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     dni VARCHAR(20) NOT NULL,
-    fecha_hora TIMESTAMP,
     id_trabajador INT,
     FOREIGN KEY (id_trabajador) REFERENCES trabajadores(id_user)
 );
