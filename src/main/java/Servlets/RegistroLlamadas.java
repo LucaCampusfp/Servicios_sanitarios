@@ -1,5 +1,6 @@
 package Servlets;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -18,6 +20,44 @@ import GestionBD.GestionBD;
 @WebServlet("/RegistroLlamadas")
 public class RegistroLlamadas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	        String dniPaciente = request.getParameter("dni_llamante");  // Obtener el DNI del paciente desde la URL
+
+	        if (dniPaciente != null && !dniPaciente.isBlank()) {
+	            try {
+	                GestionBD gestionBD = (GestionBD) getServletContext().getAttribute("gestionBD");
+	                // Recuperar los datos del paciente
+	                ResultSet rsPaciente = gestionBD.obtenerPacientePorDNI(dniPaciente);
+	                if (rsPaciente != null && rsPaciente.next()) {
+	                    // Pasar los datos del paciente al request
+	                	 request.setAttribute("nombrePaciente", rsPaciente.getString("nombre"));
+	                     request.setAttribute("dniPaciente", rsPaciente.getString("dni"));
+	                     request.setAttribute("idPaciente", rsPaciente.getInt("id_paciente"));
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+
+	        // Redirigir al JSP para mostrar la información del paciente en la misma página
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("medico.jsp");
+	        dispatcher.forward(request, response);
+	    }
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -99,7 +139,7 @@ public class RegistroLlamadas extends HttpServlet {
 					
 					
 					if(tipo_derivacion.equals("Médico")) {
-						gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", derivado);
+						gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", tipo_derivacion);
 						
 						int id_llamada = gestionBD.nuevoIdLLamada();
 						
@@ -109,7 +149,7 @@ public class RegistroLlamadas extends HttpServlet {
 						response.sendRedirect("medico.jsp");
 						
 					}else if(tipo_derivacion.equals("Psicologo")) {
-						gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", derivado);
+						gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", tipo_derivacion);
 						
 						int id_llamada = gestionBD.nuevoIdLLamada();
 						
@@ -119,7 +159,7 @@ public class RegistroLlamadas extends HttpServlet {
 						response.sendRedirect("psicologo.jsp");
 						
 					}else if(tipo_derivacion.equals("Enfermera")){
-						gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", derivado);
+						gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", tipo_derivacion);
 						
 						int id_llamada = gestionBD.nuevoIdLLamada();
 						
@@ -137,7 +177,7 @@ public class RegistroLlamadas extends HttpServlet {
 				
 				
 				if(tipo_derivacion.equals("Médico")) {
-					gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", derivado);
+					gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", tipo_derivacion);
 					
 					int id_llamada = gestionBD.nuevoIdLLamada();
 					
@@ -147,7 +187,7 @@ public class RegistroLlamadas extends HttpServlet {
 					response.sendRedirect("medico.jsp");
 					
 				}else if(tipo_derivacion.equals("Psicologo")) {
-					gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", derivado);
+					gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", tipo_derivacion);
 					
 					int id_llamada = gestionBD.nuevoIdLLamada();
 					
@@ -157,7 +197,7 @@ public class RegistroLlamadas extends HttpServlet {
 					response.sendRedirect("psicologo.jsp");
 					
 				}else if(tipo_derivacion.equals("Enfermera")){
-					gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", derivado);
+					gestionBD.nuevaLLamada(id_paciente , id_Trabajador, consejo, "PENDIENTE", tipo_derivacion);
 					
 					int id_llamada = gestionBD.nuevoIdLLamada();
 					
@@ -170,7 +210,7 @@ public class RegistroLlamadas extends HttpServlet {
 				
 				System.out.println("Se ha completado y finalizado la consulta");
 				
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, "FINALIZADA", derivado);
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, "FINALIZADA", tipo_derivacion);
 					
 					int id_llamada = gestionBD.nuevoIdLLamada();
 					
