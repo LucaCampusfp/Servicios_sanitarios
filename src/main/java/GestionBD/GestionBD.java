@@ -43,7 +43,7 @@ public class GestionBD {
 	
 
 	public ResultSet medicoLlamadas() throws SQLException {
-		String consultaSQL = "SELECT * FROM llamada WHERE  estado = 'FINALIZADA'";
+		String consultaSQL = "SELECT * FROM llamada WHERE id_trabajador = 3 AND estado = 'FINALIZADA'";
 		Statement statement = this.conexion.createStatement();
 
 		return statement.executeQuery(consultaSQL);
@@ -52,7 +52,7 @@ public class GestionBD {
 	
 	public ResultSet llamadasNombre() throws SQLException{
 		
-		String consultaSQL = "SELECT DISTINCT p.nombre, p.dni FROM paciente p JOIN llamada l ON p.id_paciente = l.id_paciente;";
+		String consultaSQL = "SELECT DISTINCT t.n_usuario AS nombreOperador,p.nombre AS nombre, p.dni FROM paciente p JOIN llamada l ON p.id_paciente = l.id_paciente JOIN trabajadores t ON l.id_trabajador = t.id_user;";
 		Statement statement = this.conexion.createStatement();
 
 		return statement.executeQuery(consultaSQL);
@@ -60,14 +60,6 @@ public class GestionBD {
 		
 		
 	}
-	public ResultSet obtenerPacientePorDNI(String dni) throws SQLException {
-	    String consultaSQL = "SELECT id_paciente, nombre, dni FROM paciente WHERE dni = ?";
-	    try (PreparedStatement statement = this.conexion.prepareStatement(consultaSQL)) {
-	        statement.setString(1, dni);
-	        return statement.executeQuery();
-	    }
-	}
-
 	
 
 	public boolean nuevaLLamada(int idPaciente, int idTrabajador, String consejo, String estado,
