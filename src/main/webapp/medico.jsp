@@ -115,7 +115,8 @@
 	
 
 	
-	<form >
+	<!-- <form action="RegistroLlamadas" method="GET">  -->
+	<form action="RegistroLlamadas" method="GET">
     <!-- Información Básica de la Llamada -->
     <fieldset>
         <legend>Información de la Llamada</legend>
