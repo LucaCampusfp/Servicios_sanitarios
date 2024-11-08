@@ -83,27 +83,17 @@ public class Login extends HttpServlet {
 			}
 			
 			if(verificacion == true) {
-				request.setAttribute("successMessage", "Inicio sesión exitoso");
-				sesion.setAttribute("GestionBD", gestionBD);
-				
-				if(rs.getString("rol").equals("Operador")) {
-					System.out.println("Operador");
-					RequestDispatcher dispatcher = request.getRequestDispatcher("operador.jsp");
-					dispatcher.forward(request, response);
-				}else if(rs.getString("rol").equals("Enfermera")) {
-					System.out.println("Enfermera");
-					RequestDispatcher dispatcher = request.getRequestDispatcher("enfermera.jsp");
-					dispatcher.forward(request, response);
-				}else if(rs.getString("rol").equals("Psicologo")) {
-					System.out.println("Psicologo");
-					RequestDispatcher dispatcher = request.getRequestDispatcher("psicologo.jsp");
-					dispatcher.forward(request, response);
-				}else if(rs.getString("rol").equals("Médico")) {
-					System.out.println("Medico");
-					RequestDispatcher dispatcher = request.getRequestDispatcher("medico.jsp");
-					dispatcher.forward(request, response);
-				}
-			
+				 request.setAttribute("successMessage", "Inicio sesión exitoso");
+				    sesion.setAttribute("usuario", user);  // Guarda el nombre de usuario o ID
+				    sesion.setAttribute("rol", rs.getString("rol"));  // Guarda el rol
+				    
+				    if(rs.getString("rol").equals("Operador")) {
+				        RequestDispatcher dispatcher = request.getRequestDispatcher("operador.jsp");
+				        dispatcher.forward(request, response);
+				    } else {
+				        RequestDispatcher dispatcher = request.getRequestDispatcher("ActualizarLlamada");
+				        dispatcher.forward(request, response);
+				    }
 				
 
 				

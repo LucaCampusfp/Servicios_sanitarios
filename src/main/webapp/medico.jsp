@@ -26,11 +26,6 @@
 		    ResultSet pacName = gestionBD.llamadasNombre();
 		    int numLlamadas = 0;
 		    
-		    
-		    
-		  
-
-		    
 		 
 %>
 
@@ -93,7 +88,7 @@
 	<p> Número de llamadas:   <%=numLlamadas%>  </p>
 	<% 
     // Recuperamos el parámetro 'nombre_llamante' de la URL (GET)
-  String operador = request.getParameter("nombreOperador");
+  	String operador = request.getParameter("nombreOperador");
     String nombreLlamante = request.getParameter("nombre_llamante");
     String dniLlamante = request.getParameter("dni_llamante");
 
@@ -116,7 +111,7 @@
 
 	
 	<!-- <form action="RegistroLlamadas" method="GET">  -->
-	<form action="RegistroLlamadas" method="GET">
+	<form action="ActualizarLlamada" method="POST">
     <!-- Información Básica de la Llamada -->
     <fieldset>
         <legend>Información de la Llamada</legend>
