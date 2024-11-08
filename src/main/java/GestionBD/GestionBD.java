@@ -52,7 +52,15 @@ public class GestionBD {
 	
 	public ResultSet llamadasNombre() throws SQLException{
 		
-		String consultaSQL = "SELECT DISTINCT t.n_usuario AS nombreOperador,p.nombre AS nombre, p.dni FROM paciente p JOIN llamada l ON p.id_paciente = l.id_paciente JOIN trabajadores t ON l.id_trabajador = t.id_user;";
+		String consultaSQL =
+				  "SELECT DISTINCT t.n_usuario AS nombreOperador, p.nombre AS nombre, p.dni, " +
+					        "q.pregunta, q.respuesta, l.id_llamada " +
+					        "FROM paciente p " +
+					        "JOIN llamada l ON p.id_paciente = l.id_paciente " +
+					        "JOIN trabajadores t ON l.id_trabajador = t.id_user " +
+					        "LEFT JOIN preguntas q ON l.id_llamada = q.id_llamada WHERE l.estado = 'PENDIENTE'; "
+					        
+					        ;
 		Statement statement = this.conexion.createStatement();
 
 		return statement.executeQuery(consultaSQL);

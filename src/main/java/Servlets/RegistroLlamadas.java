@@ -68,6 +68,8 @@ public class RegistroLlamadas extends HttpServlet {
 		for (int i = 1; i <= 3; i++) {
 			String pregunta = request.getParameter("pregunta" + i);
 			String respuesta = request.getParameter("respuesta" + i);
+			request.setAttribute("pregunta", pregunta);
+			request.setAttribute("respuesta", respuesta);
 			preguntas.add(pregunta);
 			respuestas.add(respuesta);
 		}
@@ -147,7 +149,7 @@ public class RegistroLlamadas extends HttpServlet {
 			} else {
 
 				if (tipo_derivacion.equals("Médico")) {
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, "PENDIENTE", derivado);
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, "FINALIZADA", derivado);
 
 					int id_llamada = gestionBD.nuevoIdLLamada();
 
@@ -156,7 +158,7 @@ public class RegistroLlamadas extends HttpServlet {
 					response.sendRedirect("medico.jsp");
 
 				} else if (tipo_derivacion.equals("Psicologo")) {
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, "PENDIENTE", derivado);
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, "FINALIZADA", derivado);
 
 					int id_llamada = gestionBD.nuevoIdLLamada();
 
@@ -165,7 +167,7 @@ public class RegistroLlamadas extends HttpServlet {
 					response.sendRedirect("psicologo.jsp");
 
 				} else if (tipo_derivacion.equals("Enfermera")) {
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, "PENDIENTE", derivado);
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, "FINALIZADA", derivado);
 
 					int id_llamada = gestionBD.nuevoIdLLamada();
 
@@ -177,7 +179,7 @@ public class RegistroLlamadas extends HttpServlet {
 
 				System.out.println("Se ha completado y finalizado la consulta");
 
-				gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, "FINALIZADA", derivado);
+			
 
 				int id_llamada = gestionBD.nuevoIdLLamada();
 
@@ -192,5 +194,6 @@ public class RegistroLlamadas extends HttpServlet {
 		}
 
 	}
+	
 
 }

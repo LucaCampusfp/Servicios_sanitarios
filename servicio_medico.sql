@@ -51,12 +51,12 @@ VALUES (3, 'Carlos', 'mypassword', 'Médico', 'Sábados, domingos y festivos 7:0
 INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
 VALUES (4, 'Ana', 'securepass', 'Psicólogo', 'Lunes a viernes no festivos 23:00 a 7:00');
 
-INSERT INTO paciente (nombre, dni, fecha_hora, id_trabajador) 
+INSERT INTO paciente (nombre, dni, id_trabajador) 
 VALUES 
-('Juan Pérez', '12345678A', '2024-11-05 08:30:00', 1),
-('María López', '98765432B', '2024-11-05 09:00:00', 2),
-('Carlos García', '12344321C', '2024-11-05 10:30:00', 3),
-('Laura Rodríguez', '56789012D', '2024-11-05 11:00:00', 4);
+('Juan Pérez', '12345678A', 1),
+('María López', '98765432B',  2),
+('Carlos García', '12344321C',  3),
+('Laura Rodríguez', '56789012D', 4);
 
 commit;
 
