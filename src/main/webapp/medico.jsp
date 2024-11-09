@@ -51,10 +51,10 @@
                 String pregunta = pacName.getString("pregunta");
                 String respuesta = pacName.getString("respuesta");
 
-                //if (pregunta != null && respuesta != null) {
+                
                     preguntas.add(pregunta);
                     respuestas.add(respuesta);
-                //}
+                
             } while (pacName.next() && pacName.getString("nombre").equals(nombrePac));
 
             numLlamadas++;
@@ -69,7 +69,7 @@
                         out.print("&respuesta" + (i+1) + "=" + respuestas.get(i));
                     }
                 %>">
-                <%= nombrePac %>
+                <%= nombrePac %> 
                 </a>
             </li>
 
@@ -86,37 +86,26 @@
 	
 	
 	<p> Número de llamadas:   <%=numLlamadas%>  </p>
-	<% 
-    // Recuperamos el parámetro 'nombre_llamante' de la URL (GET)
-  	String operador = request.getParameter("nombreOperador");
-    String nombreLlamante = request.getParameter("nombre_llamante");
-    String dniLlamante = request.getParameter("dni_llamante");
+<% 
+    // Recuperamos los parámetros de la URL (GET) solo si existen
+    String operador = request.getParameter("nombreOperador") != null ? request.getParameter("nombreOperador") : "";
+    String nombreLlamante = request.getParameter("nombre_llamante") != null ? request.getParameter("nombre_llamante") : "";
+    String dniLlamante = request.getParameter("dni_llamante") != null ? request.getParameter("dni_llamante") : "";
 
-    String pregunta1 = request.getParameter("pregunta1");
-    String respuesta1 = request.getParameter("respuesta1");
-    String pregunta2 = request.getParameter("pregunta2");
-    String respuesta2 = request.getParameter("respuesta2");
-    String pregunta3 = request.getParameter("pregunta3");
-    String respuesta3 = request.getParameter("respuesta3");
-	    
-	    String asistencia = request.getParameter("asistencia");
-	    String consejo = request.getParameter("consejo");
+    String pregunta1 = request.getParameter("pregunta1") != null ? request.getParameter("pregunta1") : "";
+    String respuesta1 = request.getParameter("respuesta1") != null ? request.getParameter("respuesta1") : "";
+    String pregunta2 = request.getParameter("pregunta2") != null ? request.getParameter("pregunta2") : "";
+    String respuesta2 = request.getParameter("respuesta2") != null ? request.getParameter("respuesta2") : "";
+    String pregunta3 = request.getParameter("pregunta3") != null ? request.getParameter("pregunta3") : "";
+    String respuesta3 = request.getParameter("respuesta3") != null ? request.getParameter("respuesta3") : "";
+%>
 
-	    String derivado = request.getParameter("derivado");
-	    String tipoDerivacion = request.getParameter("tipo_derivacion");
-	    String llamadaMolesta = request.getParameter("llamada_molesta");
-
-	%>
-	
-
-	
-	<!-- <form action="RegistroLlamadas" method="GET">  -->
-	<form action="ActualizarLlamada" method="POST">
+<form action="ActualizarLlamada" method="POST">
     <!-- Información Básica de la Llamada -->
     <fieldset>
         <legend>Información de la Llamada</legend>
         <label for="operador">Operador que atiende:</label>
-        <input type="text" id="operador" name="operador" required value="<%= operador %>"><br><br>
+        <input type="text" id="operador" name="operador"  required value="<%= operador %>"><br><br>
         
         <label for="nombre_llamante">Nombre de la persona que llama:</label>
         <input type="text" id="nombre_llamante" name="nombre_llamante" value="<%= nombreLlamante %>"><br><br>
@@ -125,36 +114,32 @@
         <input type="text" id="dni_llamante" name="dni_llamante" required value="<%= dniLlamante %>"><br><br>
     </fieldset>
     
-     <!-- Preguntas Básicas -->
+    <!-- Preguntas Básicas -->
     <fieldset>
         <legend>Preguntas Básicas</legend>
 
         <label for="pregunta1">Pregunta 1:</label>
-        <textarea id="pregunta1" name="pregunta1" placeholder="Escribe la pregunta aquí"><%= pregunta1 != null ? pregunta1 : "" %></textarea><br><br>
+        <textarea id="pregunta1" name="pregunta1" placeholder="Escribe la pregunta aquí"><%= pregunta1 %></textarea><br><br>
         
         <label for="respuesta1">Respuesta 1:</label>
-        <textarea id="respuesta1" name="respuesta1" placeholder="Escribe la respuesta aquí"><%= respuesta1 != null ? respuesta1 : "" %></textarea><br><br>
+        <textarea id="respuesta1" name="respuesta1" placeholder="Escribe la respuesta aquí"><%= respuesta1 %></textarea><br><br>
 
         <label for="pregunta2">Pregunta 2:</label>
-        <textarea id="pregunta2" name="pregunta2" placeholder="Escribe la pregunta aquí"><%= pregunta2 != null ? pregunta2 : "" %></textarea><br><br>
+        <textarea id="pregunta2" name="pregunta2" placeholder="Escribe la pregunta aquí"><%= pregunta2 %></textarea><br><br>
 
         <label for="respuesta2">Respuesta 2:</label>
-        <textarea id="respuesta2" name="respuesta2" placeholder="Escribe la respuesta aquí"><%= respuesta2 != null ? respuesta2 : "" %></textarea><br><br>
+        <textarea id="respuesta2" name="respuesta2" placeholder="Escribe la respuesta aquí"><%= respuesta2 %></textarea><br><br>
 
         <label for="pregunta3">Pregunta 3:</label>
-        <textarea id="pregunta3" name="pregunta3" placeholder="Escribe la pregunta aquí"><%= pregunta3 != null ? pregunta3 : "" %></textarea><br><br>
+        <textarea id="pregunta3" name="pregunta3" placeholder="Escribe la pregunta aquí"><%= pregunta3 %></textarea><br><br>
 
         <label for="respuesta3">Respuesta 3:</label>
-        <textarea id="respuesta3" name="respuesta3" placeholder="Escribe la respuesta aquí"><%= respuesta3 != null ? respuesta3 : "" %></textarea><br><br>
-        
+        <textarea id="respuesta3" name="respuesta3" placeholder="Escribe la respuesta aquí"><%= respuesta3 %></textarea><br><br>
     </fieldset>
-    <button type="submit">Registrar Llamada</button>
+    
+    <button type="submit">Actualizar Llamada</button>
 </form>
-	
-	
-	
-	
-	
+
 	
 	
 	

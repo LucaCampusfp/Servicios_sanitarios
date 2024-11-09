@@ -109,51 +109,37 @@ public class GestionBD {
 	
 	
 	
-	public boolean updateLlamada(int idLlamada, int idPaciente, int idTrabajador, String consejo, String estado, String tipoEspecialista) throws SQLException {
-	    // SQL de actualización
-	    String updateSQL = "UPDATE llamada SET id_paciente = ?, id_trabajador = ?, consejo = ?, estado = ?, tipo_especialista = ? WHERE id_llamada = ?";
-	    
-	    try (PreparedStatement statement = this.conexion.prepareStatement(updateSQL)) {
-	        // Establecer los parámetros en el PreparedStatement
-	        statement.setInt(1, idPaciente);
-	        statement.setInt(2, idTrabajador);
-	        statement.setString(3, consejo);
-	        statement.setString(4, estado);
-	        statement.setString(5, tipoEspecialista);
-	        statement.setInt(6, idLlamada); // Asegúrate de identificar la llamada por su ID
-
-	        // Ejecutar la actualización y verificar cuántas filas fueron afectadas
-	        int rowsUpdated = statement.executeUpdate();
-	        
-	        // Retornar true si se actualizó al menos una fila, de lo contrario, false
-	        return rowsUpdated > 0;
-	    } catch (SQLException e) {
-	        System.out.println("Error con la actualización de la llamada: " + e.getMessage());
-	        throw e;
-	    }
-	}
-	public boolean actualizarPregunta(int idLlamada, ArrayList<String> preguntas, ArrayList<String> respuestas) throws SQLException {
+	public boolean updatePreguntas(int idLlamada, ArrayList<String> preguntas, ArrayList<String> respuestas) throws SQLException {
 	    String updateSQL = "UPDATE preguntas SET respuesta = ? WHERE id_llamada = ? AND pregunta = ?";
-	    try (PreparedStatement statement = this.conexion.prepareStatement(updateSQL)) {
+	    String insertSQL = "INSERT INTO preguntas (id_llamada, pregunta, respuesta) VALUES (?, ?, ?)";
+
+	    try (PreparedStatement updateStatement = this.conexion.prepareStatement(updateSQL);
+	         PreparedStatement insertStatement = this.conexion.prepareStatement(insertSQL)) {
+	        
 	        for (int i = 0; i < preguntas.size(); i++) {
-	            // Verificar que la pregunta y la respuesta no sean nulas
-	            if (preguntas.get(i) != null && respuestas.get(i) != null) {
-	                statement.setString(1, respuestas.get(i));    // Establecer la respuesta nueva
-	                statement.setInt(2, idLlamada);                // Establecer el id de llamada
-	                statement.setString(3, preguntas.get(i));     // Establecer la pregunta a actualizar
-	                
-	                statement.addBatch();  // Añadir la operación al batch
+	            // Intentamos actualizar primero
+	            updateStatement.setString(1, respuestas.get(i) != null ? respuestas.get(i) : null);
+	            updateStatement.setInt(2, idLlamada);
+	            updateStatement.setString(3, preguntas.get(i) != null ? preguntas.get(i) : null);
+	            int rowsUpdated = updateStatement.executeUpdate();
+	            
+	            // Si no se actualizó ninguna fila, entonces insertamos la nueva pregunta
+	            if (rowsUpdated == 0) {
+	                insertStatement.setInt(1, idLlamada);
+	                insertStatement.setString(2, preguntas.get(i) != null ? preguntas.get(i) : null);
+	                insertStatement.setString(3, respuestas.get(i) != null ? respuestas.get(i) : null);
+	                insertStatement.executeUpdate();
 	            }
 	        }
-
-	        // Ejecutar las operaciones en batch
-	        int[] rowsUpdated = statement.executeBatch();
-	        return rowsUpdated.length > 0;
+	        return true;
 	    } catch (SQLException e) {
-	        System.out.println("Error con la actualización de preguntas: " + e.getMessage());
+	        System.out.println("Error con la actualización o inserción de preguntas: " + e.getMessage());
 	        throw e;
 	    }
 	}
+
+
+
 
 	public boolean nuevaPregunta(int idLlamada, ArrayList<String> preguntas, ArrayList<String> respuestas) throws SQLException {
 		String insertSQL = "INSERT INTO preguntas (id_llamada, pregunta, respuesta) VALUES (?, ?, ?)";
@@ -223,9 +209,13 @@ public class GestionBD {
 	public int idTrabajador(String nombre) throws SQLException {
 	    String query = "SELECT id_user FROM trabajadores WHERE n_usuario = ?";
 	    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {
-	        statement.setString(1, nombre);
+	    	System.out.println("ESTE ES EL NOMBRE QUE RECIBE " + nombre.trim().length()); 
+	    	// Esto eliminará cualquier espacio en blanco al principio o al final de la cadena. Aquí está el código modificado:
+	    	statement.setString(1, nombre.trim());
+	      
 	        ResultSet rs = statement.executeQuery();
 	        if (rs.next()) {
+	        	System.out.println("id : " +  rs.getInt("id_user"));
 	            return rs.getInt("id_user");
 	        } else {
 	            throw new SQLException("No se encontró el operador con nombre: " + nombre);

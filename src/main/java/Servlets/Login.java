@@ -90,8 +90,8 @@ public class Login extends HttpServlet {
 				    if(rs.getString("rol").equals("Operador")) {
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("operador.jsp");
 				        dispatcher.forward(request, response);
-				    } else {
-				        RequestDispatcher dispatcher = request.getRequestDispatcher("ActualizarLlamada");
+				    } else if(rs.getString("rol").equals("Médico")) {
+				        RequestDispatcher dispatcher = request.getRequestDispatcher("medico.jsp");
 				        dispatcher.forward(request, response);
 				    }
 				

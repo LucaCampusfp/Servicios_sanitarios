@@ -79,45 +79,28 @@ public class ActualizarLlamada extends HttpServlet {
 		doGet(request, response);
 		ServletContext contextApp = this.getServletContext();
 		GestionBD gestionBD = (GestionBD) contextApp.getAttribute("gestionBD");
+		request.setAttribute("gestionBD", gestionBD);
 
 		ArrayList<String> preguntas = new ArrayList<String>();
 		ArrayList<String> respuestas = new ArrayList<String>();
 
 		String nombreOperador = request.getParameter("operador");
 		System.out.println("Este es el operador : " + nombreOperador);
-		request.setAttribute("nombreOperador", nombreOperador);
+	
 		String nombrePaciente = request.getParameter("nombre_llamante");
-		request.setAttribute("nombrePaciente", nombrePaciente);
+
 		String dniPaciente = request.getParameter("dni_llamante");
-		request.setAttribute("dniPaciente", dniPaciente);
-
-		/*----------------------------------------------------------------*/
-
-		String pregunta1 = request.getParameter("pregunta1");
-		request.setAttribute("pregunta1", pregunta1);
-		String pregunta2 = request.getParameter("pregunta2");
-		request.setAttribute("pregunta2", pregunta2);
-		String pregunta3 = request.getParameter("pregunta3");
-		request.setAttribute("pregunta3", pregunta3);
-
-		String respuesta1 = request.getParameter("respuesta1");
-		request.setAttribute("respuesta1", respuesta1);
-
-		String respuesta2 = request.getParameter("respuesta2");
-		request.setAttribute("respuesta2", respuesta2);
-
-		String respuesta3 = request.getParameter("respuesta3");
-		request.setAttribute("respuesta3", respuesta3);
 
 
-		for (int i = 1; i <= 3; i++) {
-			String pregunta = request.getParameter("pregunta" + i);
-			String respuesta = request.getParameter("respuesta" + i);
-			request.setAttribute("pregunta", pregunta);
-			request.setAttribute("respuesta", respuesta);
-			preguntas.add(pregunta);
-			respuestas.add(respuesta);
-		}
+	
+
+
+
+		  // Recupera las preguntas y respuestas
+        for (int i = 1; i <= 3; i++) {
+            preguntas.add(request.getParameter("pregunta" + i));
+            respuestas.add(request.getParameter("respuesta" + i));
+        }
 
 		/*----------------------------------------------------------------*/
 
@@ -139,14 +122,41 @@ public class ActualizarLlamada extends HttpServlet {
 
 		String llamadaMolesta = request.getParameter("llamada_molesta");
 
-		/*----------------------------------------------------------------*/
+		/*----------------------------------------------------------------*/ 
+		   request.setAttribute("nombreOperador", nombreOperador);
+	        request.setAttribute("nombrePaciente", nombrePaciente);
+	        request.setAttribute("dniPaciente", dniPaciente);
+	        request.setAttribute("preguntas", preguntas);
+	        request.setAttribute("respuestas", respuestas);
+	        request.setAttribute("asistencia", asistencia);
+	        request.setAttribute("consejo", consejo);
+	        request.setAttribute("derivado", derivado);
+	        request.setAttribute("tipo_derivacion", tipo_derivacion);
+	        request.setAttribute("llamadaMolesta", llamadaMolesta);
 	
-		  int idTrabajador = 0;
-		
+		  		
 		    try {
-		        idTrabajador = gestionBD.idTrabajador(nombreOperador);  
-		        request.setAttribute("idTrabajador", idTrabajador);  
-		        System.out.println("ID del Trabajador: " + idTrabajador);
+		    	
+		    	
+		    	int idPaciente = gestionBD.idPaciente(dniPaciente);
+		    	System.out.println("Este es el id del paciente número : "+idPaciente);
+		        int idTrabajador = gestionBD.idTrabajador(nombreOperador);  
+		        
+		        int idLlamada = gestionBD.getIdLlamada(idPaciente, idTrabajador);
+		        
+		        boolean updatePreguntas = gestionBD.updatePreguntas(idLlamada, preguntas, respuestas);
+		        
+		        if (updatePreguntas) {
+		        	
+		        	for (int i = 0; i < preguntas.size(); i++) {
+		                System.out.println("Pregunta " + (i + 1) + ": " + preguntas.get(i) + " | Respuesta: " + respuestas.get(i));
+		            }
+	                request.setAttribute("successMessage", "Las preguntas fueron actualizadas correctamente.");
+	                
+	            } else {
+	                request.setAttribute("errorMessage", "No se pudo actualizar las preguntas.");
+	            }
+		      
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		        request.setAttribute("error", "No se pudo obtener el ID del trabajador.");

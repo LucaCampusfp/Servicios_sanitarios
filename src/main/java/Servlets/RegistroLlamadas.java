@@ -101,6 +101,7 @@ public class RegistroLlamadas extends HttpServlet {
 			System.out.println(id_paciente);
 			if (id_paciente == -1) {
 				int id_Trabajador = gestionBD.idTrabajador(nombreOperador);
+				request.setAttribute("id_user", id_Trabajador);
 				gestionBD.nuevoPaciente(nombrePaciente, dniPaciente, id_Trabajador);
 				id_paciente = gestionBD.idPaciente(dniPaciente); // Volver a obtener el ID
 			}
@@ -121,6 +122,7 @@ public class RegistroLlamadas extends HttpServlet {
 					int id_llamada = gestionBD.nuevoIdLLamada();
 
 					gestionBD.nuevaPregunta(id_llamada, preguntas, respuestas);
+					request.setAttribute("gestionBD", gestionBD);
 
 					response.sendRedirect("medico.jsp");
 
@@ -154,6 +156,7 @@ public class RegistroLlamadas extends HttpServlet {
 					int id_llamada = gestionBD.nuevoIdLLamada();
 
 					gestionBD.nuevaPregunta(id_llamada, preguntas, respuestas);
+					request.setAttribute("gestionBD", gestionBD);
 
 					response.sendRedirect("medico.jsp");
 
