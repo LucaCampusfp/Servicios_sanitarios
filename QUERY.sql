@@ -21,8 +21,10 @@ select * from llamada  WHERE id_trabajador = 2 AND estado = "PENDIENTE";
 select * from trabajadores;
 SELECT * FROM llamada WHERE id_trabajador = 3 AND estado = 'FINALIZADA';
 select * from llamada;
+SELECT * FROM preguntas;
 
-
+SELECT * FROM trabajadores WHERE n_usuario = 'Jose';
+SELECT n_usuario FROM trabajadores;
 SELECT 
     t.n_usuario AS nombre_operador,
     p.nombre AS nombre_paciente,
@@ -30,7 +32,7 @@ SELECT
     q.pregunta AS pregunta,
     q.respuesta AS respuesta,
     l.tipo_especialista,
-    l.estado
+    l.estado WHERE l.estado = 'FINALIZADA',
 FROM 
     llamada l
 JOIN 
@@ -42,10 +44,16 @@ JOIN
 ORDER BY 
     l.id_llamada, q.id_pregunta;
 
+SELECT id_pregunta FROM preguntas WHERE id_llamada = 2;
 
+SELECT * FROM preguntas WHERE id_llamada = 4;
 
+UPDATE preguntas SET respuesta = 'HOLA' WHERE id_llamada = 5 AND pregunta = 'ADIOS';
 
+UPDATE preguntas SET pregunta = 'HOLA', respuesta = 'ADIOS' WHERE id_llamada = 5 ;
 
+SELECT * FROM PREGUNTAS;
 
+UPDATE preguntas SET pregunta = 'HAPPY', respuesta = 'HAPPY' WHERE id_llamada = 2 AND id_pregunta = 6;
 
 

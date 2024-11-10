@@ -83,7 +83,11 @@
 		        <option value="Enfermera">Enfermera</option>
 		        <option value="Psicologo">Psicólogo</option>
 		    </select><br><br>
-		
+			
+			
+        <!-- RESOLUCIÓN FINAL DE LLAMADA -->
+  
+			
 		    <label>¿Es una llamada molesta?</label><br>
 		    <div class="radio-group">
 		        <label for="si_molesta">Sí</label>
@@ -94,6 +98,14 @@
 		        <input type="radio" id="no_molesta" name="llamada_molesta" value="no" >
 		    </div>
 		</fieldset>
+		<fieldset>
+            <legend>RESOLUCIÓN FINAL DE LLAMADA</legend>
+            <label for="estado">Decisión tomada estado llamada:</label>
+            <select id="estado" name="estado" required>
+                <option value="PENDIENTE">PENDIENTE</option>
+                <option value="FINALIZADA">FINALIZADA</option>
+            </select><br><br>
+        </fieldset>
 
         <button type="submit">Registrar Llamada</button>
     </form>

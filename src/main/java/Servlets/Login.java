@@ -91,7 +91,7 @@ public class Login extends HttpServlet {
 				        RequestDispatcher dispatcher = request.getRequestDispatcher("operador.jsp");
 				        dispatcher.forward(request, response);
 				    } else {
-				        RequestDispatcher dispatcher = request.getRequestDispatcher("ActualizarLlamada");
+				        RequestDispatcher dispatcher = request.getRequestDispatcher("medico.jsp");
 				        dispatcher.forward(request, response);
 				    }
 				

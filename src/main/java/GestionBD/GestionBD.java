@@ -53,7 +53,7 @@ public class GestionBD {
 	public ResultSet llamadasNombre() throws SQLException{
 		
 		String consultaSQL =
-				  "SELECT DISTINCT t.n_usuario AS nombreOperador, p.nombre AS nombre, p.dni, " +
+				  "SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre, p.dni, " +
 					        "q.pregunta, q.respuesta, l.id_llamada " +
 					        "FROM paciente p " +
 					        "JOIN llamada l ON p.id_paciente = l.id_paciente " +
@@ -132,26 +132,18 @@ public class GestionBD {
 	        throw e;
 	    }
 	}
-	public boolean actualizarPregunta(int idLlamada, ArrayList<String> preguntas, ArrayList<String> respuestas) throws SQLException {
-	    String updateSQL = "UPDATE preguntas SET respuesta = ? WHERE id_llamada = ? AND pregunta = ?";
+	public boolean actualizarPreguntas(int idLlamada, ArrayList<String> preguntas, ArrayList<String> respuestas, int idPreguntas) throws SQLException {
+	    String updateSQL = "UPDATE preguntas SET pregunta = ?, respuesta = ? WHERE id_llamada = ? AND id_pregunta = ?";
 	    try (PreparedStatement statement = this.conexion.prepareStatement(updateSQL)) {
 	        for (int i = 0; i < preguntas.size(); i++) {
-	            // Verificar que la pregunta y la respuesta no sean nulas
-	            if (preguntas.get(i) != null && respuestas.get(i) != null) {
-	                statement.setString(1, respuestas.get(i));    // Establecer la respuesta nueva
-	                statement.setInt(2, idLlamada);                // Establecer el id de llamada
-	                statement.setString(3, preguntas.get(i));     // Establecer la pregunta a actualizar
-	                
-	                statement.addBatch();  // Añadir la operación al batch
-	            }
+	            statement.setString(1, preguntas.get(i));
+	            statement.setString(2, respuestas.get(i));
+	            statement.setInt(3, idLlamada);
+	            statement.setInt(4, idPreguntas + i); // Asegúrate de que id_pregunta sea correcto
+	            statement.addBatch();
 	        }
-
-	        // Ejecutar las operaciones en batch
 	        int[] rowsUpdated = statement.executeBatch();
 	        return rowsUpdated.length > 0;
-	    } catch (SQLException e) {
-	        System.out.println("Error con la actualización de preguntas: " + e.getMessage());
-	        throw e;
 	    }
 	}
 
@@ -223,7 +215,8 @@ public class GestionBD {
 	public int idTrabajador(String nombre) throws SQLException {
 	    String query = "SELECT id_user FROM trabajadores WHERE n_usuario = ?";
 	    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {
-	        statement.setString(1, nombre);
+	    	System.out.println(nombre.length() +" Longitud");
+	        statement.setString(1, nombre.trim());
 	        ResultSet rs = statement.executeQuery();
 	        if (rs.next()) {
 	            return rs.getInt("id_user");
@@ -232,5 +225,21 @@ public class GestionBD {
 	        }
 	    }
 	}
+	
+	public int getIdPregunta(int idLlamada) throws SQLException {
+	    String query = "SELECT id_pregunta FROM preguntas WHERE id_llamada = ?";
+	    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {
+	        statement.setInt(1, idLlamada);
+
+	        ResultSet rs = statement.executeQuery();
+	        if (rs.next()) {
+	            return rs.getInt("id_pregunta");
+	        } else {
+	            return -1; // Si no se encuentra la pregunta para esa llamada, devuelve -1
+	        }
+	    }
+	}
+
+	
 
 }

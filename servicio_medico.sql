@@ -40,7 +40,7 @@ CREATE TABLE preguntas (
 );
 
 INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
-VALUES (1, 'Jose', '123456', 'Operador', 'Lunes a viernes no festivos 7:00 a 15:00');
+VALUES (1, 'Q', '1', 'Operador', 'Lunes a viernes no festivos 7:00 a 15:00');
 
 INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
 VALUES (2, 'Maria', 'password123', 'Enfermera', 'Lunes a viernes no festivos 15:00 a 23:00');

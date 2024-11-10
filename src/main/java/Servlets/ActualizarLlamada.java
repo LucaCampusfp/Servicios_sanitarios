@@ -36,47 +36,16 @@ public class ActualizarLlamada extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Obtén la sesión y verifica si existe
-        HttpSession sesion = request.getSession(false);
+    	RequestDispatcher dispatcher = request.getRequestDispatcher("/ActualizarLlamada");
+		dispatcher.forward(request, response);
         
-        if (sesion != null) {
-            String rol = (String) sesion.getAttribute("rol");  // Recupera el rol del trabajador
-            
-            if (rol != null) {
-                // Redirige según el rol
-                switch (rol) {
-                    case "Operador":
-                        RequestDispatcher dispatcher = request.getRequestDispatcher("operador.jsp");
-                        dispatcher.forward(request, response);
-                        break;
-                    case "Enfermera":
-                        dispatcher = request.getRequestDispatcher("enfermera.jsp");
-                        dispatcher.forward(request, response);
-                        break;
-                    case "Psicologo":
-                        dispatcher = request.getRequestDispatcher("psicologo.jsp");
-                        dispatcher.forward(request, response);
-                        break;
-                    case "Médico":
-                        dispatcher = request.getRequestDispatcher("medico.jsp");
-                        dispatcher.forward(request, response);
-                        break;
-                    default:
-                        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Rol no autorizado");
-                        break;
-                }
-            } else {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No se ha encontrado rol en la sesión");
-            }
-        } else {
-            response.sendRedirect("index.jsp");  // Si no hay sesión, redirigir al login
-        }
     }
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 		ServletContext contextApp = this.getServletContext();
 		GestionBD gestionBD = (GestionBD) contextApp.getAttribute("gestionBD");
 
@@ -110,14 +79,20 @@ public class ActualizarLlamada extends HttpServlet {
 		request.setAttribute("respuesta3", respuesta3);
 
 
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 0; i <= 3; i++) {
 			String pregunta = request.getParameter("pregunta" + i);
 			String respuesta = request.getParameter("respuesta" + i);
-			request.setAttribute("pregunta", pregunta);
-			request.setAttribute("respuesta", respuesta);
-			preguntas.add(pregunta);
-			respuestas.add(respuesta);
+		    pregunta = (pregunta == null || pregunta.trim().isEmpty()) ? "PENDIENTE" : pregunta.trim();
+		    respuesta = (respuesta == null || respuesta.trim().isEmpty()) ? "PENDIENTE" : respuesta.trim();
+		    request.setAttribute("pregunta" + i, pregunta);
+		    request.setAttribute("respuesta" + i, respuesta);
+
+			   preguntas.add(pregunta != null ? pregunta : "  PENDIENTE ");
+			    respuestas.add(respuesta != null ? respuesta : "  PENDIENTE ");
 		}
+
+		request.setAttribute("pregunta", preguntas);
+		request.setAttribute("respuesta", respuestas);
 
 		/*----------------------------------------------------------------*/
 
@@ -140,13 +115,47 @@ public class ActualizarLlamada extends HttpServlet {
 		String llamadaMolesta = request.getParameter("llamada_molesta");
 
 		/*----------------------------------------------------------------*/
+
+		String estado = request.getParameter("estado");
+		request.setAttribute("estado", estado);
+
+		/*----------------------------------------------------------------*/
 	
-		  int idTrabajador = 0;
+		  
 		
 		    try {
-		        idTrabajador = gestionBD.idTrabajador(nombreOperador);  
+		        int idTrabajador = gestionBD.idTrabajador(nombreOperador.trim());
+		        int idPaciente = gestionBD.idPaciente(dniPaciente);
+		        
+		        int idLlamada = gestionBD.getIdLlamada(idPaciente, idTrabajador);
+		        
+		        int idPreguntas = gestionBD.getIdPregunta(idLlamada);
+		        
+		        //boolean updatePreguntas = gestionBD.actualizarPreguntas(idLlamada, preguntas, respuestas,idPreguntas);
+		        
+		        if (idPreguntas == -1) {  // Si no se encuentran preguntas
+		            boolean insertPreguntas = gestionBD.nuevaPregunta(idLlamada, preguntas, respuestas);
+		            if (insertPreguntas) {
+		                System.out.println("Preguntas insertadas exitosamente.");
+		            } else {
+		                System.out.println("Error al insertar preguntas.");
+		            }
+		        } else {
+		            boolean updatePreguntasS = gestionBD.actualizarPreguntas(idLlamada, preguntas, respuestas, idPreguntas);
+		            if (updatePreguntasS) {
+		                System.out.println("Preguntas actualizadas exitosamente.");
+		            } else {
+		                System.out.println("Error al actualizar preguntas.");
+		            }
+		        }
+		        
 		        request.setAttribute("idTrabajador", idTrabajador);  
 		        System.out.println("ID del Trabajador: " + idTrabajador);
+		    	response.sendRedirect("medico.jsp");
+		    	
+		    	
+		    	
+		    	
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		        request.setAttribute("error", "No se pudo obtener el ID del trabajador.");
