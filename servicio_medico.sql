@@ -61,6 +61,7 @@ VALUES
 INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_especialista)
 VALUES 
 (1, 1, 'Recibir reposo y tomar analgésicos', 'PENDIENTE', 'Medico'),
+(1, 1, 'Recibir reposo y tomar analgésicos', 'PENDIENTE', 'Medico'),
 (2, 1, 'Tomar medicación para la fiebre y seguir hidratándose', 'PENDIENTE', 'Medico'),
 (3, 1, 'Se recomienda realizar estudios adicionales', 'PENDIENTE', 'Medico'),
 (4, 1, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Medico');
@@ -79,7 +80,7 @@ VALUES
 (3, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'En caso de que el dolor persista, consulte a un médico para una evaluación más profunda.'),
 (3, '¿Cuántos días debo descansar por la fiebre?', 'Se recomienda descansar al menos 48 horas y mantenerse hidratado. Si la fiebre persiste más de 72 horas, consulte a un médico.'),
 (3, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Se recomienda una ecografía abdominal y un análisis de sangre para descartar infecciones o problemas internos.'),
-(3, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practicar yoga, meditación y realizar ejercicios de respiración pueden ser útiles. También se recomienda consultar con un terapeuta si el estrés persiste.');
+(3, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practicar yoga, meditación y realizar ejercicios de respiración pueden ser útiles. También se recomienda consultar con un terapeuta si el estrés persiste.'),
 (4, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'En caso de que el dolor persista, consulte a un médico para una evaluación más profunda.'),
 (4, '¿Cuántos días debo descansar por la fiebre?', 'Se recomienda descansar al menos 48 horas y mantenerse hidratado. Si la fiebre persiste más de 72 horas, consulte a un médico.'),
 (4, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Se recomienda una ecografía abdominal y un análisis de sangre para descartar infecciones o problemas internos.'),
