@@ -51,7 +51,11 @@ public class ActualizarLlamada extends HttpServlet {
 		
 		ArrayList<String> preguntas = new ArrayList<String>();
 		ArrayList<String> respuestas = new ArrayList<String>();
-
+		
+		String id_llamada = request.getParameter("id_llamada");
+		
+	        
+		request.setAttribute("id_llamada", id_llamada);
 		String nombreOperador = request.getParameter("operador");
 		System.out.println("Este es el operador : " + nombreOperador);
 		request.setAttribute("nombreOperador", nombreOperador);
@@ -111,12 +115,22 @@ public class ActualizarLlamada extends HttpServlet {
 		        
 		        int idLlamada = gestionBD.getIdLlamadaPendiente(idPaciente, idTrabajador,"PENDIENTE");
 		        System.out.println(idLlamada);
-		        int idPreguntas = gestionBD.getIdPregunta(idLlamada);
+		        
+		        int llamadaId = 0; 
+				  try {
+					  llamadaId = Integer.parseInt(id_llamada);
+			            System.out.println( llamadaId + " este es el id_llamada");
+			        } catch (NumberFormatException e) {
+			            System.out.println("El id_llamada no es un número válido: " + llamadaId);
+			        }
+		        
+		        
+		        int idPreguntas = gestionBD.getIdPregunta(llamadaId);
 		        
 		        //boolean updatePreguntas = gestionBD.actualizarPreguntas(idLlamada, preguntas, respuestas,idPreguntas);
 		        
 		        if (idPreguntas == -1) {  // Si no se encuentran preguntas
-		            boolean insertPreguntas = gestionBD.nuevaPregunta(idLlamada, preguntas, respuestas);
+		            boolean insertPreguntas = gestionBD.nuevaPregunta(llamadaId, preguntas, respuestas);
 		           
 		            if (insertPreguntas) {
 		                System.out.println("Preguntas insertadas exitosamente.");
@@ -125,8 +139,8 @@ public class ActualizarLlamada extends HttpServlet {
 		            }
 		        } else {
 		        	
-		            boolean updatePreguntasS = gestionBD.actualizarPreguntas(idLlamada, preguntas, respuestas, idPreguntas);
-		            boolean updateLlamadas = gestionBD.updateLlamada(idLlamada,idPaciente, estado);
+		            boolean updatePreguntasS = gestionBD.actualizarPreguntas(llamadaId, preguntas, respuestas, idPreguntas);
+		            boolean updateLlamadas = gestionBD.updateLlamada(llamadaId,idPaciente, estado);
 		            if (updatePreguntasS && updateLlamadas) {
 		                System.out.println("Preguntas actualizadas exitosamente y estado paciente.");
 		            } else {

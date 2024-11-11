@@ -53,8 +53,8 @@ public class GestionBD {
 	public ResultSet llamadasNombre() throws SQLException{
 		
 		String consultaSQL =
-				  "SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre, p.dni, " +
-					        "q.pregunta, q.respuesta, l.id_llamada, p.id_paciente " +
+				  "SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada, p.dni, " +
+					        "q.pregunta, q.respuesta, p.id_paciente " +
 					        "FROM paciente p " +
 					        "JOIN llamada l ON p.id_paciente = l.id_paciente " +
 					        "JOIN trabajadores t ON l.id_trabajador = t.id_user " +

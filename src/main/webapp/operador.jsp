@@ -1,5 +1,9 @@
+<%@page import="com.mysql.cj.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.ResultSet, java.sql.SQLException, GestionBD.GestionBD"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +12,16 @@
 <link rel="stylesheet" href="operador.css">
 </head>
 <body>
+	<% 
+        // Obtener los datos de las llamadas desde la base de datos
+        GestionBD gestionBD = (GestionBD) application.getAttribute("gestionBD");
+        int numLlamadas = 0;
+		       
+        HttpSession sesion = request.getSession(false);
+        String n_usuario = (String) sesion.getAttribute("usuario");
+       
+        
+    %>
 <h1 style="text-align: center;">Panel de gestión de operadores</h1>
 
 <h2>Registro de Llamadas</h2>
@@ -18,7 +32,7 @@
             <legend>Información de la Llamada</legend>
            
             <label for="operador">Operador que atiende:</label>
-            <input type="text" id="operador" name="operador" required><br><br>
+            <input type="text" id="operador" name="operador" required value = "<%= n_usuario %>" readonly><br><br>
             
             <label for="nombre_llamante">Nombre de la persona que llama:</label>
             <input type="text" id="nombre_llamante" name="nombre_llamante" required><br><br>

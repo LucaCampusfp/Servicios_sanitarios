@@ -62,16 +62,28 @@
             <li>
                 <a href="medico.jsp?nombre_llamante=<%= nombrePac %>&dni_llamante=<%= dniPac %>&nombreOperador=<%= nombreOp %>
                     <% 
+                    
+                    	out.print("&id_llamada=" + idLlamada);
                         // Generar los parámetros de las preguntas y respuestas
                         for (int i = 0; i < preguntas.size(); i++) {
+                        	
                             out.print("&pregunta" + (i+1) + "=" + preguntas.get(i));
                             out.print("&respuesta" + (i+1) + "=" + respuestas.get(i));
+                            
+                           
                         }
+                        
+                        
+                        	
                     
                     
-                    System.out.println( idLlamada + "Y" + idPaciente);
+                    //System.out.println( idLlamada + "Y" + idPaciente);
                     %>">
-                    <%= nombrePac +  idLlamada + "Y" + idPaciente %>
+					 
+					                    
+                    <%= nombrePac %>
+             
+                    
                     
                      
                     
@@ -92,6 +104,9 @@
 
     <% 
         // Recuperar los parámetros de la URL (GET)
+        String id_llamada = request.getParameter("id_llamada");
+    	
+    	
         String operador = request.getParameter("nombreOperador");
         String nombreLlamante = request.getParameter("nombre_llamante");
         String dniLlamante = request.getParameter("dni_llamante");
@@ -105,14 +120,30 @@
         
         String estado = request.getParameter("estado");
         
+     // En caso de que cualquier campo esté vacío o nulo, asignar valor por defecto
+        operador = (operador == null || operador.trim().isEmpty()) ? "" : operador;
+        nombreLlamante = (nombreLlamante == null || nombreLlamante.trim().isEmpty()) ? "" : nombreLlamante;
+        dniLlamante = (dniLlamante == null || dniLlamante.trim().isEmpty()) ? "" : dniLlamante;
 
-        // En caso de que alguna pregunta o respuesta esté vacía o nula, asignar valor por defecto
         pregunta1 = (pregunta1 == null || pregunta1.trim().isEmpty()) ? "" : pregunta1;
         respuesta1 = (respuesta1 == null || respuesta1.trim().isEmpty()) ? "" : respuesta1;
+
         pregunta2 = (pregunta2 == null || pregunta2.trim().isEmpty()) ? "" : pregunta2;
         respuesta2 = (respuesta2 == null || respuesta2.trim().isEmpty()) ? "" : respuesta2;
+
         pregunta3 = (pregunta3 == null || pregunta3.trim().isEmpty()) ? "" : pregunta3;
         respuesta3 = (respuesta3 == null || respuesta3.trim().isEmpty()) ? "" : respuesta3;
+
+        estado = (estado == null || estado.trim().isEmpty()) ? "" : estado;
+        int idllamada = 0;
+        try {
+        	idllamada = Integer.parseInt(id_llamada);
+            System.out.println( idllamada + " este es el id_llamada");
+        } catch (NumberFormatException e) {
+            System.out.println("El id_llamada no es un número válido: " + id_llamada);
+        }
+        
+
     %>
 
     <!-- Formulario para registrar la llamada -->
@@ -120,14 +151,17 @@
         <!-- Información Básica de la Llamada -->
         <fieldset>
             <legend>Información de la Llamada</legend>
+            <label for="id_llamada">ID de la llamada</label>
+            <input type="text" id="id_llamada" name="id_llamada" required value="<%= idllamada  %>" readonly><br><br>
+            
             <label for="operador">Operador que atiende:</label>
-            <input type="text" id="operador" name="operador" required value="<%= operador %>"><br><br>
+            <input type="text" id="operador" name="operador" required value="<%= operador %>"readonly><br><br>
 
             <label for="nombre_llamante">Nombre de la persona que llama:</label>
-            <input type="text" id="nombre_llamante" name="nombre_llamante" value="<%= nombreLlamante %>"><br><br>
+            <input type="text" id="nombre_llamante" name="nombre_llamante" value="<%= nombreLlamante %>"readonly><br><br>
 
             <label for="dni_llamante">DNI de la persona que llama:</label>
-            <input type="text" id="dni_llamante" name="dni_llamante" required value="<%= dniLlamante %>"><br><br>
+            <input type="text" id="dni_llamante" name="dni_llamante" required value="<%= dniLlamante %>"readonly><br><br>
         </fieldset>
 
         <!-- Preguntas Básicas -->
@@ -136,7 +170,7 @@
 
             <!-- Pregunta 1 y su respuesta -->
             <label for="pregunta1">Pregunta 1:</label>
-            <textarea id="pregunta1" name="pregunta1" placeholder="Escribe la pregunta aquí"><%= pregunta1 %></textarea><br><br>
+            <textarea id="pregunta1" name="pregunta1" placeholder="Escribe la pregunta aquí" required="required"><%= pregunta1 %></textarea><br><br>
 
             <label for="respuesta1">Respuesta 1:</label>
             <textarea id="respuesta1" name="respuesta1" placeholder="Escribe la respuesta aquí"><%= respuesta1 %></textarea><br><br>
@@ -167,6 +201,10 @@
         </fieldset>
 
         <button type="submit">Registrar Llamada</button>
+        
+    </form>
+    <form action="LogOut" method="post">
+    <button type="submit">Cerrar sesión</button>
     </form>
 </body>
 </html>
