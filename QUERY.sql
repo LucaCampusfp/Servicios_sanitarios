@@ -32,7 +32,8 @@ SELECT
     q.pregunta AS pregunta,
     q.respuesta AS respuesta,
     l.tipo_especialista,
-    l.estado WHERE l.estado = 'FINALIZADA',
+    l.estado,
+    l.id_llamada
 FROM 
     llamada l
 JOIN 
@@ -40,20 +41,25 @@ JOIN
 JOIN 
     paciente p ON l.id_paciente = p.id_paciente
 JOIN 
-    preguntas q ON l.id_llamada = q.id_llamada
+    preguntas q ON l.id_llamada = q.id_llamada  
+WHERE 
+    l.estado = 'PENDIENTE'
 ORDER BY 
     l.id_llamada, q.id_pregunta;
 
 SELECT id_pregunta FROM preguntas WHERE id_llamada = 2;
 
-SELECT * FROM preguntas WHERE id_llamada = 4;
+SELECT * FROM preguntas WHERE id_llamada = 1;
 
 UPDATE preguntas SET respuesta = 'HOLA' WHERE id_llamada = 5 AND pregunta = 'ADIOS';
 
 UPDATE preguntas SET pregunta = 'HOLA', respuesta = 'ADIOS' WHERE id_llamada = 5 ;
 
 SELECT * FROM PREGUNTAS;
-
-UPDATE preguntas SET pregunta = 'HAPPY', respuesta = 'HAPPY' WHERE id_llamada = 2 AND id_pregunta = 6;
+SELECT * FROM LLAMADA;
+UPDATE preguntas SET pregunta = 'HAPPY', respuesta = 'HAPPY' WHERE id_llamada = 2 AND id_pregunta = 3;
+UPDATE llamada SET consejo = 'asdas', estado = "PENDIENTE", tipo_especialista = "Medico" WHERE id_llamada = 3;
+UPDATE llamada SET estado = "FINALIZADA" WHERE id_llamada = 4;
+DROP DATABASE servicio_medico;
 
 
