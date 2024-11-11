@@ -106,7 +106,7 @@ public class GestionBD {
 	    }
 	}
 	public int getIdLlamadaPendiente(int idPaciente, int idTrabajador, String estado) throws SQLException {
-	    String query = "SELECT id_llamada FROM llamada WHERE id_paciente = ? AND id_trabajador = ? AND estado = ? LIMIT 1";
+	    String query = "SELECT id_llamada FROM llamada WHERE id_paciente = ? AND id_trabajador = ? AND estado = ?";
 	    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {
 	        statement.setInt(1, idPaciente);
 	        statement.setInt(2, idTrabajador);
