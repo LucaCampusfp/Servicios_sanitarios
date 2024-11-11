@@ -48,7 +48,7 @@ public class ActualizarLlamada extends HttpServlet {
 		
 		ServletContext contextApp = this.getServletContext();
 		GestionBD gestionBD = (GestionBD) contextApp.getAttribute("gestionBD");
-
+		
 		ArrayList<String> preguntas = new ArrayList<String>();
 		ArrayList<String> respuestas = new ArrayList<String>();
 
@@ -135,6 +135,7 @@ public class ActualizarLlamada extends HttpServlet {
 		        
 		        if (idPreguntas == -1) {  // Si no se encuentran preguntas
 		            boolean insertPreguntas = gestionBD.nuevaPregunta(idLlamada, preguntas, respuestas);
+		           
 		            if (insertPreguntas) {
 		                System.out.println("Preguntas insertadas exitosamente.");
 		            } else {
@@ -142,8 +143,9 @@ public class ActualizarLlamada extends HttpServlet {
 		            }
 		        } else {
 		            boolean updatePreguntasS = gestionBD.actualizarPreguntas(idLlamada, preguntas, respuestas, idPreguntas);
-		            if (updatePreguntasS) {
-		                System.out.println("Preguntas actualizadas exitosamente.");
+		            boolean updateLlamadas = gestionBD.updateLlamada(idLlamada, estado);
+		            if (updatePreguntasS && updateLlamadas) {
+		                System.out.println("Preguntas actualizadas exitosamente y estado paciente.");
 		            } else {
 		                System.out.println("Error al actualizar preguntas.");
 		            }

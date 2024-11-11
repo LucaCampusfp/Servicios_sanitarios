@@ -109,18 +109,16 @@ public class GestionBD {
 	
 	
 	
-	public boolean updateLlamada(int idLlamada, int idPaciente, int idTrabajador, String consejo, String estado, String tipoEspecialista) throws SQLException {
+	public boolean updateLlamada(int idLlamada, String estado) throws SQLException {
 	    // SQL de actualización
-	    String updateSQL = "UPDATE llamada SET id_paciente = ?, id_trabajador = ?, consejo = ?, estado = ?, tipo_especialista = ? WHERE id_llamada = ?";
+	    String updateSQL = "UPDATE llamada SET estado = ? WHERE id_llamada = ?";
 	    
 	    try (PreparedStatement statement = this.conexion.prepareStatement(updateSQL)) {
 	        // Establecer los parámetros en el PreparedStatement
-	        statement.setInt(1, idPaciente);
-	        statement.setInt(2, idTrabajador);
-	        statement.setString(3, consejo);
-	        statement.setString(4, estado);
-	        statement.setString(5, tipoEspecialista);
-	        statement.setInt(6, idLlamada); // Asegúrate de identificar la llamada por su ID
+
+	  
+	        statement.setString(1, estado);
+	        statement.setInt(2, idLlamada); 
 
 	        // Ejecutar la actualización y verificar cuántas filas fueron afectadas
 	        int rowsUpdated = statement.executeUpdate();

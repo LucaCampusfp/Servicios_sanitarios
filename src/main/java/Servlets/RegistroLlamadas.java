@@ -123,25 +123,21 @@ public class RegistroLlamadas extends HttpServlet {
 
 			int id_Trabajador = gestionBD.idTrabajador(nombreOperador);
 
-			if (nombreOperador.isBlank() || nombrePaciente.isBlank() || dniPaciente.isBlank() || pregunta1.isBlank()
-					|| pregunta2.isBlank() || pregunta3.isBlank() || respuesta1.isBlank() || respuesta2.isBlank()
-					|| respuesta3.isBlank() || asistencia == "Dar Consejo" || tipo_derivacion == null
-					|| derivado == null || llamadaMolesta.isBlank()) {
-				// Código a ejecutar si alguna de las variables está en blanco
-
-				// System.out.println("Se ha derivado a una llamada pendiente");
+			
 
 				if (tipo_derivacion.equals("Médico")) {
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, derivado);
+					gestionBD.nuevoPaciente(nombrePaciente, dniPaciente, id_Trabajador);
+					id_paciente = gestionBD.idPaciente(dniPaciente); // Volver a obtener el ID
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, tipo_derivacion);
 
 					int id_llamada = gestionBD.nuevoIdLLamada();
 
 					gestionBD.nuevaPregunta(id_llamada, preguntas, respuestas);
 
-					response.sendRedirect("medico.jsp");
+					response.sendRedirect("operador.jsp");
 
 				} else if (tipo_derivacion.equals("Psicologo")) {
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, derivado);
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, tipo_derivacion);
 
 					int id_llamada = gestionBD.nuevoIdLLamada();
 
@@ -150,40 +146,7 @@ public class RegistroLlamadas extends HttpServlet {
 					response.sendRedirect("psicologo.jsp");
 
 				} else if (tipo_derivacion.equals("Enfermera")) {
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, derivado);
-
-					int id_llamada = gestionBD.nuevoIdLLamada();
-
-					gestionBD.nuevaPregunta(id_llamada, preguntas, respuestas);
-
-					response.sendRedirect("enfermera.jsp");
-
-				}
-
-				System.out.println("Se ha podido generar perfectamente la llamada pero se ha derivado a pendiente");
-
-			} else {
-
-				if (tipo_derivacion.equals("Médico")) {
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, derivado);
-
-					int id_llamada = gestionBD.nuevoIdLLamada();
-
-					gestionBD.nuevaPregunta(id_llamada, preguntas, respuestas);
-
-					response.sendRedirect("medico.jsp");
-
-				} else if (tipo_derivacion.equals("Psicologo")) {
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, derivado);
-
-					int id_llamada = gestionBD.nuevoIdLLamada();
-
-					gestionBD.nuevaPregunta(id_llamada, preguntas, respuestas);
-
-					response.sendRedirect("psicologo.jsp");
-
-				} else if (tipo_derivacion.equals("Enfermera")) {
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, derivado);
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, tipo_derivacion);
 
 					int id_llamada = gestionBD.nuevoIdLLamada();
 
@@ -197,12 +160,8 @@ public class RegistroLlamadas extends HttpServlet {
 
 			
 
-				int id_llamada = gestionBD.nuevoIdLLamada();
 
-				gestionBD.nuevaPregunta(id_llamada, preguntas, respuestas);
-				System.out.println("Se ha podido generar perfectamente la llamada ELSE");
-
-			}
+			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

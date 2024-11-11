@@ -42,7 +42,7 @@
                             preguntas.add(pregunta);
                             respuestas.add(respuesta);
                         } while (pacName.next() && pacName.getString("nombre").equals(nombrePac) && pacName.getInt("id_llamada") == idLlamada);
-
+						//   } while (pacName.next() && pacName.getString("nombre").equals(nombrePac) && pacName.getInt("id_llamada") == idLlamada);
 
                         numLlamadas++;
 
@@ -94,6 +94,9 @@
         String respuesta2 = request.getParameter("respuesta2");
         String pregunta3 = request.getParameter("pregunta3");
         String respuesta3 = request.getParameter("respuesta3");
+        
+        String estado = request.getParameter("estado");
+        
 
         // En caso de que alguna pregunta o respuesta esté vacía o nula, asignar valor por defecto
         pregunta1 = (pregunta1 == null || pregunta1.trim().isEmpty()) ? "" : pregunta1;
@@ -144,6 +147,15 @@
             <label for="respuesta3">Respuesta 3:</label>
             <textarea id="respuesta3" name="respuesta3" placeholder="Escribe la respuesta aquí"><%= respuesta3 %></textarea><br><br>
 
+        </fieldset>
+        
+        <fieldset>
+            <legend>RESOLUCIÓN FINAL DE LLAMADA</legend>
+            <label for="estado">Decisión tomada estado llamada:</label>
+            <select id="estado" name="estado" required>
+                <option value="PENDIENTE">PENDIENTE</option>
+                <option value="FINALIZADA">FINALIZADA</option>
+            </select><br><br>
         </fieldset>
 
         <button type="submit">Registrar Llamada</button>
