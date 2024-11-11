@@ -94,28 +94,9 @@ public class ActualizarLlamada extends HttpServlet {
 		request.setAttribute("pregunta", preguntas);
 		request.setAttribute("respuesta", respuestas);
 
-		/*----------------------------------------------------------------*/
-
-		String asistencia = request.getParameter("asistencia");
-
-		/*-------------------------------------------------------------------------------------*/
-
-		String consejo = request.getParameter("consejo");
-
-		/*-------------------------------------------------------------------------*/
-
-		String derivado = request.getParameter("derivado");
-
-		/*------------------------------------------------------------------------------*/
-
-		String tipo_derivacion = request.getParameter("tipo_derivacion");
-
-		/*-------------------------------------------------------------*/
-
-		String llamadaMolesta = request.getParameter("llamada_molesta");
-
-		/*----------------------------------------------------------------*/
-
+		
+		
+		
 		String estado = request.getParameter("estado");
 		request.setAttribute("estado", estado);
 
@@ -124,11 +105,12 @@ public class ActualizarLlamada extends HttpServlet {
 		  
 		
 		    try {
+		    	
 		        int idTrabajador = gestionBD.idTrabajador(nombreOperador.trim());
 		        int idPaciente = gestionBD.idPaciente(dniPaciente);
 		        
-		        int idLlamada = gestionBD.getIdLlamada(idPaciente, idTrabajador);
-		        
+		        int idLlamada = gestionBD.getIdLlamadaPendiente(idPaciente, idTrabajador,"PENDIENTE");
+		        System.out.println(idLlamada);
 		        int idPreguntas = gestionBD.getIdPregunta(idLlamada);
 		        
 		        //boolean updatePreguntas = gestionBD.actualizarPreguntas(idLlamada, preguntas, respuestas,idPreguntas);
@@ -142,8 +124,9 @@ public class ActualizarLlamada extends HttpServlet {
 		                System.out.println("Error al insertar preguntas.");
 		            }
 		        } else {
+		        	
 		            boolean updatePreguntasS = gestionBD.actualizarPreguntas(idLlamada, preguntas, respuestas, idPreguntas);
-		            boolean updateLlamadas = gestionBD.updateLlamada(idLlamada, estado);
+		            boolean updateLlamadas = gestionBD.updateLlamada(idLlamada,idPaciente, estado);
 		            if (updatePreguntasS && updateLlamadas) {
 		                System.out.println("Preguntas actualizadas exitosamente y estado paciente.");
 		            } else {
@@ -152,7 +135,7 @@ public class ActualizarLlamada extends HttpServlet {
 		        }
 		        
 		        request.setAttribute("idTrabajador", idTrabajador);  
-		        System.out.println("ID del Trabajador: " + idTrabajador);
+		        //System.out.println("ID del Trabajador: " + idTrabajador);
 		    	response.sendRedirect("medico.jsp");
 		    	
 		    	

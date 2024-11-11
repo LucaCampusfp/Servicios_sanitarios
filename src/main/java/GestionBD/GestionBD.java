@@ -54,7 +54,7 @@ public class GestionBD {
 		
 		String consultaSQL =
 				  "SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre, p.dni, " +
-					        "q.pregunta, q.respuesta, l.id_llamada " +
+					        "q.pregunta, q.respuesta, l.id_llamada, p.id_paciente " +
 					        "FROM paciente p " +
 					        "JOIN llamada l ON p.id_paciente = l.id_paciente " +
 					        "JOIN trabajadores t ON l.id_trabajador = t.id_user " +
@@ -105,20 +105,39 @@ public class GestionBD {
 	        }
 	    }
 	}
+	public int getIdLlamadaPendiente(int idPaciente, int idTrabajador, String estado) throws SQLException {
+	    String query = "SELECT id_llamada FROM llamada WHERE id_paciente = ? AND id_trabajador = ? AND estado = ? LIMIT 1";
+	    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {
+	        statement.setInt(1, idPaciente);
+	        statement.setInt(2, idTrabajador);
+	        statement.setString(3, estado);
+
+	        ResultSet rs = statement.executeQuery();
+	        if (rs.next()) {
+	        	System.out.println(rs.getInt("id_llamada"));
+	            return rs.getInt("id_llamada");
+	        } else {
+	            return -1; // Si no encontramos la llamada, devolvemos -1
+	        }
+	    }
+	}
 
 	
 	
 	
-	public boolean updateLlamada(int idLlamada, String estado) throws SQLException {
+	public boolean updateLlamada(int idLlamada, int idPaciente, String estado) throws SQLException {
 	    // SQL de actualización
-	    String updateSQL = "UPDATE llamada SET estado = ? WHERE id_llamada = ?";
+	    String updateSQL = "UPDATE llamada SET estado = ? WHERE id_llamada = ? AND id_paciente = ?";
 	    
 	    try (PreparedStatement statement = this.conexion.prepareStatement(updateSQL)) {
 	        // Establecer los parámetros en el PreparedStatement
-
+	    	System.out.println("esta  " + estado );
+	    	System.out.println("esta  " + idLlamada );
+	    	System.out.println("esta  " + idPaciente );
 	  
 	        statement.setString(1, estado);
 	        statement.setInt(2, idLlamada); 
+	        statement.setInt(3, idPaciente); 
 
 	        // Ejecutar la actualización y verificar cuántas filas fueron afectadas
 	        int rowsUpdated = statement.executeUpdate();
@@ -213,7 +232,7 @@ public class GestionBD {
 	public int idTrabajador(String nombre) throws SQLException {
 	    String query = "SELECT id_user FROM trabajadores WHERE n_usuario = ?";
 	    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {
-	    	System.out.println(nombre.length() +" Longitud");
+	    	//System.out.println(nombre.length() +" Longitud");
 	        statement.setString(1, nombre.trim());
 	        ResultSet rs = statement.executeQuery();
 	        if (rs.next()) {

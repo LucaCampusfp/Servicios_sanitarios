@@ -29,7 +29,7 @@
                         String nombrePac = pacName.getString("nombre");
                         String dniPac = pacName.getString("dni");
                         int idLlamada = pacName.getInt("id_llamada");
-
+                        int idPaciente = pacName.getInt("id_paciente");
                         // Capturamos las preguntas y respuestas para una llamada
                         List<String> preguntas = new ArrayList<>();
                         List<String> respuestas = new ArrayList<>();
@@ -41,6 +41,8 @@
                             // Añadir preguntas y respuestas a las listas
                             preguntas.add(pregunta);
                             respuestas.add(respuesta);
+                            
+                            //System.out.println(idLlamada);
                         } while (pacName.next() && pacName.getString("nombre").equals(nombrePac) && pacName.getInt("id_llamada") == idLlamada);
 						//   } while (pacName.next() && pacName.getString("nombre").equals(nombrePac) && pacName.getInt("id_llamada") == idLlamada);
 
@@ -65,8 +67,14 @@
                             out.print("&pregunta" + (i+1) + "=" + preguntas.get(i));
                             out.print("&respuesta" + (i+1) + "=" + respuestas.get(i));
                         }
+                    
+                    
+                    System.out.println( idLlamada + "Y" + idPaciente);
                     %>">
-                    <%= nombrePac %>
+                    <%= nombrePac +  idLlamada + "Y" + idPaciente %>
+                    
+                     
+                    
                 </a>
             </li>
 
