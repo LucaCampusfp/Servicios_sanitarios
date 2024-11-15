@@ -1,4 +1,4 @@
-<%@page import="com.mysql.cj.Session"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.ResultSet, java.sql.SQLException, GestionBD.GestionBD"%>
@@ -64,16 +64,6 @@
 
         <!-- Tipo de Asistencia -->
         <fieldset>
-            <legend>Tipo de Asistencia</legend>
-            <label for="asistencia">Decisión tomada:</label>
-            <select id="asistencia" name="asistencia" required>
-                <option value="consejo">Dar consejo</option>
-                <option value="Médico">Derivar a médico</option>
-                <option value="Enfermera">Derivar a enfermera</option>
-                <option value="Psicologo">Derivar a psicólogo</option>
-                <option value="llamada_molesta">Registrar como llamada molesta</option>
-            </select><br><br>
-
             <label for="consejo">Consejo ofrecido (si aplica):</label>
             <textarea id="consejo" name="consejo"></textarea><br><br>
         </fieldset>
@@ -81,14 +71,7 @@
  	   <fieldset>
 		    <legend>Registro Final de la Llamada</legend>
 		    
-		    <label>¿Fue derivado a un profesional?</label><br>
-		    <div class="radio-group">
-		        <label for="si_derivado">Sí</label>
-		        <input type="radio" id="si_derivado" name="derivado" value="si" style="margin-right: 50px">
-		  
-		        <label for="no_derivado">No</label>
-		        <input type="radio" id="no_derivado" name="derivado" value="no">
-		    </div>
+		   
 		
 		    <label for="tipo_derivacion">Tipo de derivación:</label>
 		    <select id="tipo_derivacion" name="tipo_derivacion">
@@ -98,21 +81,7 @@
 		        <option value="Psicologo">Psicólogo</option>
 		    </select><br><br>
 			
-			
-        <!-- RESOLUCIÓN FINAL DE LLAMADA -->
-  
-			
-		    <label>¿Es una llamada molesta?</label><br>
-		    <div class="radio-group">
-		        <label for="si_molesta">Sí</label>
-		        <input type="radio" id="si_molesta" name="llamada_molesta" value="si" style="margin-right: 50px">
-		
-		
-		        <label for="no_molesta">No</label>
-		        <input type="radio" id="no_molesta" name="llamada_molesta" value="no" >
-		    </div>
-		</fieldset>
-		<fieldset>
+
             <legend>RESOLUCIÓN FINAL DE LLAMADA</legend>
             <label for="estado">Decisión tomada estado llamada:</label>
             <select id="estado" name="estado" required>

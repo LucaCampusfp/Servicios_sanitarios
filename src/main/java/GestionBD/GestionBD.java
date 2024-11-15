@@ -53,7 +53,7 @@ public class GestionBD {
 	public ResultSet llamadasNombre() throws SQLException{
 		
 		String consultaSQL =
-				  "SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada, p.dni, " +
+				  "SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada,l.consejo,l.tipo_derivacion, p.dni, " +
 					        "q.pregunta, q.respuesta, p.id_paciente " +
 					        "FROM paciente p " +
 					        "JOIN llamada l ON p.id_paciente = l.id_paciente " +
@@ -73,13 +73,17 @@ public class GestionBD {
 
 	public boolean nuevaLLamada(int idPaciente, int idTrabajador, String consejo, String estado,
 			String tipoEspecialista) throws SQLException {
-		String insertSQL = "INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_especialista) VALUES (?, ?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_derivacion) VALUES (?, ?, ?, ?, ?)";
 		try (PreparedStatement statement = this.conexion.prepareStatement(insertSQL)) {
 			statement.setInt(1, idPaciente);
 			statement.setInt(2, idTrabajador);
+			//System.out.println(consejo);
 			statement.setString(3, consejo);
 			statement.setString(4, estado);
+			//System.out.println(tipoEspecialista);
+
 			statement.setString(5, tipoEspecialista);
+			
 
 			int rowsInserted = statement.executeUpdate();
 			

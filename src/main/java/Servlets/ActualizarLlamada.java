@@ -105,6 +105,24 @@ public class ActualizarLlamada extends HttpServlet {
 		request.setAttribute("estado", estado);
 
 		/*----------------------------------------------------------------*/
+		
+		String llamada_molesta = request.getParameter("llamada_molesta");
+		request.setAttribute("llamada_molesta", llamada_molesta);
+
+		/*----------------------------------------------------------------*/
+
+		String consejo = request.getParameter("consejo");
+		request.setAttribute("consejo", consejo);
+
+		/*-------------------------------------------------------------------------*/
+
+		
+
+		String tipo_derivacion = request.getParameter("tipo_derivacion");
+		request.setAttribute("tipo_derivacion", tipo_derivacion);
+		
+
+	
 	
 		  
 		

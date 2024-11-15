@@ -117,23 +117,22 @@ public class RegistroLlamadas extends HttpServlet {
 
 		/*----------------------------------------------------------------*/
 
-		String asistencia = request.getParameter("asistencia");
-
-		/*-------------------------------------------------------------------------------------*/
+		
 
 		String consejo = request.getParameter("consejo");
+		request.setAttribute("consejo", consejo);
 
 		/*-------------------------------------------------------------------------*/
 
-		String derivado = request.getParameter("derivado");
-
-		/*------------------------------------------------------------------------------*/
+		
 
 		String tipo_derivacion = request.getParameter("tipo_derivacion");
+		request.setAttribute("tipo_derivacion", tipo_derivacion);
 
 		/*-------------------------------------------------------------*/
 
-		String llamadaMolesta = request.getParameter("llamada_molesta");
+		String llamada_molesta = request.getParameter("llamada_molesta");
+		request.setAttribute("llamada_molesta", llamada_molesta);
 
 		/*----------------------------------------------------------------*/
 		

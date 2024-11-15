@@ -28,6 +28,9 @@
                         String nombreOp = pacName.getString("nombreOperador");
                         String nombrePac = pacName.getString("nombre");
                         String dniPac = pacName.getString("dni");
+                        String consejo = pacName.getString("consejo");
+                        System.out.println(consejo +"UwU");
+                        String tipo_derivacion = pacName.getString("tipo_derivacion");
                         int idLlamada = pacName.getInt("id_llamada");
                         int idPaciente = pacName.getInt("id_paciente");
                         // Capturamos las preguntas y respuestas para una llamada
@@ -72,8 +75,9 @@
                             
                            
                         }
+                        out.print("&consejo=" + consejo);
                         
-                        
+                        out.print("&tipo_derivacion=" + tipo_derivacion);
                         	
                     
                     
@@ -118,6 +122,13 @@
         String pregunta3 = request.getParameter("pregunta3");
         String respuesta3 = request.getParameter("respuesta3");
         
+       	String consejo = request.getParameter("consejo");
+       	String tipo_derivacion = request.getParameter("tipo_derivacion"); 
+       	
+        if (tipo_derivacion == null || tipo_derivacion.trim().isEmpty()) {
+            tipo_derivacion = "ninguno";  // Valor por defecto si no se selecciona nada
+        }
+       	
         String estado = request.getParameter("estado");
         
      // En caso de que cualquier campo esté vacío o nulo, asignar valor por defecto
@@ -190,6 +201,21 @@
             <textarea id="respuesta3" name="respuesta3" placeholder="Escribe la respuesta aquí"><%= respuesta3 %></textarea><br><br>
 
         </fieldset>
+          <fieldset>
+            <label for="consejo">Consejo ofrecido:</label>
+            <textarea id="consejo" name="consejo"> <%= consejo %></textarea><br><br>
+            
+         
+          </fieldset>
+          <fieldset>
+			    <label for="tipo_derivacion">Tipo de derivación:</label>
+			    <select id="tipo_derivacion" name="tipo_derivacion">
+			        <option value="ninguno" <%= tipo_derivacion.equals("ninguno") ? "selected" : "" %>>Ninguno</option>
+			        <option value="Médico" <%= tipo_derivacion.equals("Médico") ? "selected" : "" %>>Médico</option>
+			        <option value="Enfermera" <%= tipo_derivacion.equals("Enfermera") ? "selected" : "" %>>Enfermera</option>
+			        <option value="Psicologo" <%= tipo_derivacion.equals("Psicologo") ? "selected" : "" %>>Psicólogo</option>
+			    </select><br><br>
+			</fieldset>
         
         <fieldset>
             <legend>RESOLUCIÓN FINAL DE LLAMADA</legend>
