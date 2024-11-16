@@ -50,30 +50,57 @@ public class GestionBD {
 
 	}
 	
-	public ResultSet llamadasNombre() throws SQLException{
+	public ResultSet llamadasMedico() throws SQLException{
 		
 		String consultaSQL =
-				  "SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada,l.consejo,l.tipo_derivacion, p.dni, " +
+				  "SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada,l.consejo,l.tipo_derivacion,l.llamada_molesta, p.dni, " +
 					        "q.pregunta, q.respuesta, p.id_paciente " +
 					        "FROM paciente p " +
 					        "JOIN llamada l ON p.id_paciente = l.id_paciente " +
 					        "JOIN trabajadores t ON l.id_trabajador = t.id_user " +
-					        "LEFT JOIN preguntas q ON l.id_llamada = q.id_llamada WHERE l.estado = 'PENDIENTE'; "
+					        "LEFT JOIN preguntas q ON l.id_llamada = q.id_llamada WHERE l.estado = 'PENDIENTE' AND l.tipo_derivacion = 'Médico'; "
 					        
 					        ;
 		Statement statement = this.conexion.createStatement();
 
-		return statement.executeQuery(consultaSQL);
+		return statement.executeQuery(consultaSQL);		
+	}
+	public ResultSet llamadasEnfermera() throws SQLException{
+		
+		String consultaSQL =
+				  "SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada,l.consejo,l.tipo_derivacion,l.llamada_molesta, p.dni, " +
+					        "q.pregunta, q.respuesta, p.id_paciente " +
+					        "FROM paciente p " +
+					        "JOIN llamada l ON p.id_paciente = l.id_paciente " +
+					        "JOIN trabajadores t ON l.id_trabajador = t.id_user " +
+					        "LEFT JOIN preguntas q ON l.id_llamada = q.id_llamada WHERE l.estado = 'PENDIENTE' AND l.tipo_derivacion = 'Enfermera'; "
+					        
+					        ;
+		Statement statement = this.conexion.createStatement();
 
+		return statement.executeQuery(consultaSQL);		
+	}
+	public ResultSet llamadasPsicologo() throws SQLException{
 		
-		
+		String consultaSQL =
+				  "SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada,l.consejo,l.tipo_derivacion,l.llamada_molesta, p.dni, " +
+					        "q.pregunta, q.respuesta, p.id_paciente " +
+					        "FROM paciente p " +
+					        "JOIN llamada l ON p.id_paciente = l.id_paciente " +
+					        "JOIN trabajadores t ON l.id_trabajador = t.id_user " +
+					        "LEFT JOIN preguntas q ON l.id_llamada = q.id_llamada WHERE l.estado = 'PENDIENTE' AND l.tipo_derivacion = 'Psicologo'; "
+					        
+					        ;
+		Statement statement = this.conexion.createStatement();
+
+		return statement.executeQuery(consultaSQL);		
 	}
 	
 	
 
 	public boolean nuevaLLamada(int idPaciente, int idTrabajador, String consejo, String estado,
-			String tipoEspecialista) throws SQLException {
-		String insertSQL = "INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_derivacion) VALUES (?, ?, ?, ?, ?)";
+			String tipoEspecialista,String llamada_molesta) throws SQLException {
+		String insertSQL = "INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_derivacion, llamada_molesta) VALUES (?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement statement = this.conexion.prepareStatement(insertSQL)) {
 			statement.setInt(1, idPaciente);
 			statement.setInt(2, idTrabajador);
@@ -83,6 +110,7 @@ public class GestionBD {
 			//System.out.println(tipoEspecialista);
 
 			statement.setString(5, tipoEspecialista);
+			statement.setString(6, llamada_molesta);
 			
 
 			int rowsInserted = statement.executeUpdate();
@@ -128,24 +156,31 @@ public class GestionBD {
 
 	
 	
-	
-	public boolean updateLlamada(int idLlamada, int idPaciente, String estado) throws SQLException {
+	public boolean updateLlamada(int idLlamada, int idPaciente, String estado, String consejo, String tipoDerivacion, String llamadaMolesta) throws SQLException {
 	    // SQL de actualización
-	    String updateSQL = "UPDATE llamada SET estado = ? WHERE id_llamada = ? AND id_paciente = ?";
+	    String updateSQL = "UPDATE llamada " +
+	                       "SET estado = ?, consejo = ?, tipo_derivacion = ?, llamada_molesta = ? " +
+	                       "WHERE id_llamada = ? AND id_paciente = ?";
 	    
 	    try (PreparedStatement statement = this.conexion.prepareStatement(updateSQL)) {
 	        // Establecer los parámetros en el PreparedStatement
-	    	System.out.println("esta  " + estado );
-	    	System.out.println("esta  " + idLlamada );
-	    	System.out.println("esta  " + idPaciente );
-	  
-	        statement.setString(1, estado);
-	        statement.setInt(2, idLlamada); 
-	        statement.setInt(3, idPaciente); 
+	        System.out.println("Estado: " + estado);
+	        System.out.println("ID Llamada: " + idLlamada);
+	        System.out.println("ID Paciente: " + idPaciente);
+	        System.out.println("Consejo: " + consejo);
+	        System.out.println("Tipo Derivación: " + tipoDerivacion);
+	        System.out.println("Llamada Molesta: " + llamadaMolesta);
+
+	        statement.setString(1, estado); // Para el campo estado
+	        statement.setString(2, consejo); // Para el campo consejo
+	        statement.setString(3, tipoDerivacion); // Para el campo tipo_derivacion
+	        statement.setString(4, llamadaMolesta); // Para el campo llamada_molesta
+	        statement.setInt(5, idLlamada); // Para el campo id_llamada
+	        statement.setInt(6, idPaciente); // Para el campo id_paciente
 
 	        // Ejecutar la actualización y verificar cuántas filas fueron afectadas
 	        int rowsUpdated = statement.executeUpdate();
-	        
+
 	        // Retornar true si se actualizó al menos una fila, de lo contrario, false
 	        return rowsUpdated > 0;
 	    } catch (SQLException e) {
@@ -153,6 +188,7 @@ public class GestionBD {
 	        throw e;
 	    }
 	}
+
 	public boolean actualizarPreguntas(int idLlamada, ArrayList<String> preguntas, ArrayList<String> respuestas, int idPreguntas) throws SQLException {
 	    String updateSQL = "UPDATE preguntas SET pregunta = ?, respuesta = ? WHERE id_llamada = ? AND id_pregunta = ?";
 	    try (PreparedStatement statement = this.conexion.prepareStatement(updateSQL)) {

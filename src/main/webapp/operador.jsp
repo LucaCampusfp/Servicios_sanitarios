@@ -80,6 +80,16 @@
 		        <option value="Enfermera">Enfermera</option>
 		        <option value="Psicologo">Psicólogo</option>
 		    </select><br><br>
+		    
+		    <label>¿Es una llamada molesta?</label><br>
+		    <div class="radio-group">
+		        <label for="si_molesta">Sí</label>
+		        <input type="radio" id="si_molesta" name="llamada_molesta" value="si" style="margin-right: 50px">
+		
+		
+		        <label for="no_molesta">No</label>
+		        <input type="radio" id="no_molesta" name="llamada_molesta" value="no" >
+		    </div>
 			
 
             <legend>RESOLUCIÓN FINAL DE LLAMADA</legend>

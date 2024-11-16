@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #2a2f38; /* Fondo oscuro para todo el body */
+    color: #e0e0e0; /* Texto claro para el cuerpo */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,21 +13,26 @@ body {
 table {
     border-collapse: collapse;
     width: 300px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #333; /* Fondo oscuro para la tabla */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más suave */
     border-radius: 8px;
+    color: #e0e0e0; /* Color de texto en la tabla */
 }
 
 /* Estilo de las celdas */
 th {
     padding: 20px;
     text-align: center;
+    background-color: #444; /* Fondo oscuro para las cabeceras */
+    color: #fff; /* Texto blanco en las cabeceras */
+    border-bottom: 2px solid #555; /* Borde sutil para separar las celdas */
 }
 
 /* Títulos */
 h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: #e0e0e0; /* Color de texto claro */
+    font-size: 24px;
 }
 
 /* Estilo de los inputs */
@@ -35,7 +41,9 @@ input[type="password"] {
     width: 90%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid #666; /* Borde gris oscuro */
+    background-color: #444; /* Fondo oscuro para los inputs */
+    color: #e0e0e0; /* Texto claro */
     border-radius: 4px;
     transition: border-color 0.3s;
 }
@@ -43,13 +51,13 @@ input[type="password"] {
 /* Cambio de color en el foco */
 input[type="text"]:focus,
 input[type="password"]:focus {
-    border-color: #007BFF;
+    border-color: #4CAF50; /* Verde brillante para el borde al hacer foco */
     outline: none;
 }
 
 /* Estilo del botón */
 button {
-    background-color: #007BFF;
+    background-color: #4CAF50; /* Verde brillante para el fondo del botón */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -60,11 +68,17 @@ button {
 
 /* Cambio de color en el hover del botón */
 button:hover {
-    background-color: #0056b3;
+    background-color: #45a049; /* Color ligeramente más oscuro en hover */
 }
 
 /* Estilo del mensaje de error */
 p.error-message {
-    color: red;
+    color: #ff4d4d; /* Rojo brillante para los mensajes de error */
     margin-top: 10px;
+}
+
+/* Opcional: agregar un borde de foco al input cuando esté en uso */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.8); /* Sombra verde para resaltar el input */
 }

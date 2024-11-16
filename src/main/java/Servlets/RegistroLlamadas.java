@@ -158,7 +158,7 @@ public class RegistroLlamadas extends HttpServlet {
 				if (tipo_derivacion.equals("Médico")) {
 					gestionBD.nuevoPaciente(nombrePaciente, dniPaciente, id_Trabajador);
 					id_paciente = gestionBD.idPaciente(dniPaciente); // Volver a obtener el ID
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, tipo_derivacion);
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, tipo_derivacion,llamada_molesta);
 
 					int id_llamada = gestionBD.nuevoIdLLamada();
 
@@ -167,22 +167,26 @@ public class RegistroLlamadas extends HttpServlet {
 					response.sendRedirect("operador.jsp");
 
 				} else if (tipo_derivacion.equals("Psicologo")) {
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, tipo_derivacion);
+					gestionBD.nuevoPaciente(nombrePaciente, dniPaciente, id_Trabajador);
+					id_paciente = gestionBD.idPaciente(dniPaciente); // Volver a obtener el ID
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, tipo_derivacion,llamada_molesta);
 
 					int id_llamada = gestionBD.nuevoIdLLamada();
 
 					gestionBD.nuevaPregunta(id_llamada, preguntas, respuestas);
 
-					response.sendRedirect("psicologo.jsp");
+					response.sendRedirect("operador.jsp");
 
 				} else if (tipo_derivacion.equals("Enfermera")) {
-					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, tipo_derivacion);
+					gestionBD.nuevoPaciente(nombrePaciente, dniPaciente, id_Trabajador);
+					id_paciente = gestionBD.idPaciente(dniPaciente); // Volver a obtener el ID
+					gestionBD.nuevaLLamada(id_paciente, id_Trabajador, consejo, estado, tipo_derivacion,llamada_molesta);
 
 					int id_llamada = gestionBD.nuevoIdLLamada();
 
 					gestionBD.nuevaPregunta(id_llamada, preguntas, respuestas);
 
-					response.sendRedirect("enfermera.jsp");
+					response.sendRedirect("operador.jsp");
 
 				}
 

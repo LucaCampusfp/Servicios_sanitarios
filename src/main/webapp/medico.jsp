@@ -15,7 +15,7 @@
     <% 
         // Obtener los datos de las llamadas desde la base de datos
         GestionBD gestionBD = (GestionBD) application.getAttribute("gestionBD");
-        ResultSet pacName = gestionBD.llamadasNombre();
+        ResultSet pacName = gestionBD.llamadasMedico();
         int numLlamadas = 0;
     %>
 
@@ -29,8 +29,10 @@
                         String nombrePac = pacName.getString("nombre");
                         String dniPac = pacName.getString("dni");
                         String consejo = pacName.getString("consejo");
-                        System.out.println(consejo +"UwU");
+                        //System.out.println(consejo +"UwU");
                         String tipo_derivacion = pacName.getString("tipo_derivacion");
+                        String llamada_molesta = pacName.getString("llamada_molesta");
+                        System.out.println(llamada_molesta + "EwE");
                         int idLlamada = pacName.getInt("id_llamada");
                         int idPaciente = pacName.getInt("id_paciente");
                         // Capturamos las preguntas y respuestas para una llamada
@@ -78,6 +80,8 @@
                         out.print("&consejo=" + consejo);
                         
                         out.print("&tipo_derivacion=" + tipo_derivacion);
+                        
+                        out.print("&llamada_molesta=" + llamada_molesta);
                         	
                     
                     
@@ -124,6 +128,9 @@
         
        	String consejo = request.getParameter("consejo");
        	String tipo_derivacion = request.getParameter("tipo_derivacion"); 
+       	String llamada_molesta = request.getParameter("llamada_molesta");
+       	
+       	
        	
         if (tipo_derivacion == null || tipo_derivacion.trim().isEmpty()) {
             tipo_derivacion = "ninguno";  // Valor por defecto si no se selecciona nada
@@ -215,6 +222,16 @@
 			        <option value="Enfermera" <%= tipo_derivacion.equals("Enfermera") ? "selected" : "" %>>Enfermera</option>
 			        <option value="Psicologo" <%= tipo_derivacion.equals("Psicologo") ? "selected" : "" %>>Psicólogo</option>
 			    </select><br><br>
+			    
+			    
+			    <label>¿Es una llamada molesta?</label><br>
+		    <div class="radio-group">
+		        <label for="si_molesta">Sí</label>
+		        <input type="radio" id="si_molesta" name="llamada_molesta" value="si" <%= "si".equals(llamada_molesta) ? "checked" : "" %> style="margin-right: 50px">
+		    
+			    <label for="no_molesta">No</label>
+			    <input type="radio" id="no_molesta" name="llamada_molesta" value="no" <%= "no".equals(llamada_molesta) ? "checked" : "" %>>
+		    </div>
 			</fieldset>
         
         <fieldset>

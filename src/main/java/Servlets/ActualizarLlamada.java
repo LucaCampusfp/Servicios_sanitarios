@@ -49,8 +49,10 @@ public class ActualizarLlamada extends HttpServlet {
 		ServletContext contextApp = this.getServletContext();
 		GestionBD gestionBD = (GestionBD) contextApp.getAttribute("gestionBD");
 		
+		
 		ArrayList<String> preguntas = new ArrayList<String>();
 		ArrayList<String> respuestas = new ArrayList<String>();
+		HttpSession sesion = request.getSession(false);
 		
 		String id_llamada = request.getParameter("id_llamada");
 		
@@ -158,7 +160,7 @@ public class ActualizarLlamada extends HttpServlet {
 		        } else {
 		        	
 		            boolean updatePreguntasS = gestionBD.actualizarPreguntas(llamadaId, preguntas, respuestas, idPreguntas);
-		            boolean updateLlamadas = gestionBD.updateLlamada(llamadaId,idPaciente, estado);
+		            boolean updateLlamadas = gestionBD.updateLlamada(llamadaId,idPaciente, estado,consejo,tipo_derivacion,llamada_molesta);
 		            if (updatePreguntasS && updateLlamadas) {
 		                System.out.println("Preguntas actualizadas exitosamente y estado paciente.");
 		            } else {
@@ -168,7 +170,7 @@ public class ActualizarLlamada extends HttpServlet {
 		        
 		        request.setAttribute("idTrabajador", idTrabajador);  
 		        //System.out.println("ID del Trabajador: " + idTrabajador);
-		    	response.sendRedirect("medico.jsp");
+		    
 		    	
 		    	
 		    	
@@ -177,6 +179,36 @@ public class ActualizarLlamada extends HttpServlet {
 		        e.printStackTrace();
 		        request.setAttribute("error", "No se pudo obtener el ID del trabajador.");
 		    }
+		    
+		    if (sesion != null) {
+	            String rol = (String) sesion.getAttribute("rol");  // Recupera el rol del trabajador
+	            
+	            if (rol != null) {
+	                // Redirige según el rol
+	                switch (rol) {
+	                    case "Operador":
+	                        RequestDispatcher dispatcher = request.getRequestDispatcher("/RegistroLlamadas");
+	                        dispatcher.forward(request, response);
+	                        break;
+	                    case "Enfermera":
+	    					response.sendRedirect("enfermera.jsp");
+	                        break;
+	                    case "Psicologo":
+	                		response.sendRedirect("psicologo.jsp");
+	                        break;
+	                    case "Médico":
+	                		response.sendRedirect("medico.jsp");
+	                        break;
+	                    default:
+	                        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Rol no autorizado");
+	                        break;
+	                }
+	            } else {
+	                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No se ha encontrado rol en la sesión");
+	            }
+	        } else {
+	            response.sendRedirect("index.jsp");  // Si no hay sesión, redirigir al login
+	        }
 
 		
 		
