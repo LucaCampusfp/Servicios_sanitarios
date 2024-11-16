@@ -25,7 +25,8 @@ CREATE TABLE llamada (
     id_trabajador INT NOT NULL,
     consejo TEXT,
     estado VARCHAR(20),
-    tipo_especialista VARCHAR(20),
+    tipo_derivacion VARCHAR(20),
+    llamada_molesta VARCHAR(5),
     FOREIGN KEY (id_paciente) REFERENCES paciente(id_paciente),
     FOREIGN KEY (id_trabajador) REFERENCES trabajadores(id_user)
    
@@ -58,38 +59,95 @@ VALUES
 ('Carlos García', '12344321C',  3),
 ('Laura Rodríguez', '56789012D', 4);
 -- Insertar llamadas
-INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_especialista)
+INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_derivacion,llamada_molesta)
 VALUES 
-(1, 1, 'Recibir reposo y tomar analgésicos', 'PENDIENTE', 'Medico'),
-(1, 1, 'Recibir reposo y tomar analgésicos', 'PENDIENTE', 'Medico'),
-(2, 1, 'Tomar medicación para la fiebre y seguir hidratándose', 'PENDIENTE', 'Medico'),
-(3, 1, 'Se recomienda realizar estudios adicionales', 'PENDIENTE', 'Medico'),
-(4, 1, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Medico'),
-(5, 1, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Medico');
+(1, 1, 'Recibir reposo y tomar analgésicos', 'PENDIENTE', 'Médico','si'),
+(1, 1, 'Recibir reposo y tomar analgésicos', 'PENDIENTE', 'Médico','si'),
+(2, 1, 'Tomar medicación para la fiebre y seguir hidratándose', 'PENDIENTE', 'Médico','si'),
+(3, 1, 'Se recomienda realizar estudios adicionales', 'PENDIENTE', 'Médico','no'),
+(4, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(4, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(3, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(3, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(2, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(2, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(1, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(1, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no');
 
 -- Insertar preguntas
 INSERT INTO preguntas (id_llamada, pregunta, respuesta)
 VALUES
-(1, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'En caso de que el dolor persista, consulte a un médico para una evaluación más profunda.'),
-(1, '¿Cuántos días debo descansar por la fiebre?', 'Se recomienda descansar al menos 48 horas y mantenerse hidratado. Si la fiebre persiste más de 72 horas, consulte a un médico.'),
-(1, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Se recomienda una ecografía abdominal y un análisis de sangre para descartar infecciones o problemas internos.'),
-(1, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practicar yoga, meditación y realizar ejercicios de respiración pueden ser útiles. También se recomienda consultar con un terapeuta si el estrés persiste.'),
-(2, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'En caso de que el dolor persista, consulte a un médico para una evaluación más profunda.'),
-(2, '¿Cuántos días debo descansar por la fiebre?', 'Se recomienda descansar al menos 48 horas y mantenerse hidratado. Si la fiebre persiste más de 72 horas, consulte a un médico.'),
-(2, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Se recomienda una ecografía abdominal y un análisis de sangre para descartar infecciones o problemas internos.'),
-(2, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practicar yoga, meditación y realizar ejercicios de respiración pueden ser útiles. También se recomienda consultar con un terapeuta si el estrés persiste.'),
-(3, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'En caso de que el dolor persista, consulte a un médico para una evaluación más profunda.'),
-(3, '¿Cuántos días debo descansar por la fiebre?', 'Se recomienda descansar al menos 48 horas y mantenerse hidratado. Si la fiebre persiste más de 72 horas, consulte a un médico.'),
-(3, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Se recomienda una ecografía abdominal y un análisis de sangre para descartar infecciones o problemas internos.'),
-(3, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practicar yoga, meditación y realizar ejercicios de respiración pueden ser útiles. También se recomienda consultar con un terapeuta si el estrés persiste.'),
-(4, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'En caso de que el dolor persista, consulte a un médico para una evaluación más profunda.'),
-(4, '¿Cuántos días debo descansar por la fiebre?', 'Se recomienda descansar al menos 48 horas y mantenerse hidratado. Si la fiebre persiste más de 72 horas, consulte a un médico.'),
-(4, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Se recomienda una ecografía abdominal y un análisis de sangre para descartar infecciones o problemas internos.'),
-(4, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practicar yoga, meditación y realizar ejercicios de respiración pueden ser útiles. También se recomienda consultar con un terapeuta si el estrés persiste.'),
-(5, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'En caso de que el dolor persista, consulte a un médico para una evaluación más profunda.'),
-(5, '¿Cuántos días debo descansar por la fiebre?', 'Se recomienda descansar al menos 48 horas y mantenerse hidratado. Si la fiebre persiste más de 72 horas, consulte a un médico.'),
-(5, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Se recomienda una ecografía abdominal y un análisis de sangre para descartar infecciones o problemas internos.'),
-(5, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practicar yoga, meditación y realizar ejercicios de respiración pueden ser útiles. También se recomienda consultar con un terapeuta si el estrés persiste.');
+-- ID LLAMADA 1
+(1, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si el dolor sigue presente después de tomar analgésicos, es importante que consultes a un profesional para evaluar el origen del malestar.'),
+(1, '¿Cuántos días debo descansar por la fiebre?', 'Descansa al menos 48 horas y asegúrate de mantenerte bien hidratado. Si la fiebre persiste por más de tres días, es recomendable ver a un médico.'),
+(1, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Podrías realizar una ecografía o un examen de sangre para identificar posibles causas internas o infecciones que necesiten atención.'),
+(1, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Realizar actividades relajantes como meditación, ejercicios de respiración o yoga te puede ayudar. Si el estrés persiste, considera buscar la ayuda de un especialista.'),
+
+-- ID LLAMADA 2
+(2, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si los analgésicos no funcionan, te aconsejamos que acudas a un médico para determinar si hay una causa subyacente más seria.'),
+(2, '¿Cuántos días debo descansar por la fiebre?', 'Se sugiere descansar y tomar líquidos por al menos 48 horas. Si la fiebre no baja en tres días, es mejor que consultes con un profesional.'),
+(2, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Es recomendable realizar una ecografía y un análisis de sangre para descartar infecciones o cualquier otro trastorno interno.'),
+(2, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practicar técnicas de relajación como yoga o meditación puede ayudarte a manejar el estrés. También es útil hablar con un terapeuta si sientes que no puedes manejarlo por ti mismo.'),
+
+-- ID LLAMADA 3
+(3, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si el dolor persiste, consulta con tu médico para que te haga un diagnóstico adecuado y te ofrezca un tratamiento adecuado.'),
+(3, '¿Cuántos días debo descansar por la fiebre?', 'Es recomendable descansar por lo menos 48 horas y mantener una buena hidratación. Si la fiebre no desaparece en tres días, busca ayuda médica.'),
+(3, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Te sugerimos hacer una ecografía y análisis de sangre para investigar posibles infecciones o problemas internos.'),
+(3, '¿Cómo puedo reducir el estrés de forma efectiva?', 'La meditación, los ejercicios de respiración y el yoga son muy eficaces para reducir el estrés. Si persiste, puedes considerar terapia profesional.'),
+
+-- ID LLAMADA 4
+(4, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si el dolor no disminuye, es importante que vayas a consulta médica para obtener un diagnóstico preciso.'),
+(4, '¿Cuántos días debo descansar por la fiebre?', 'Es importante descansar durante al menos 48 horas. Si después de 72 horas la fiebre sigue, ve a un médico para una revisión.'),
+(4, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Es recomendable una ecografía abdominal y un análisis sanguíneo para identificar cualquier anomalía interna o infecciones.'),
+(4, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Realiza actividades como yoga, meditación o ejercicios respiratorios para reducir el estrés. También puedes buscar el apoyo de un terapeuta si es necesario.'),
+
+-- ID LLAMADA 5
+(5, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si no experimentas mejoría, consulta con tu médico para obtener una evaluación más completa y considerar otras opciones de tratamiento.'),
+(5, '¿Cuántos días debo descansar por la fiebre?', 'Descansa lo suficiente, al menos 48 horas, y mantente hidratado. Si la fiebre persiste por más de tres días, consulta a un profesional.'),
+(5, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Una ecografía abdominal y un análisis de sangre son útiles para identificar cualquier problema o infección interna que pueda estar causando el dolor.'),
+(5, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practica actividades relajantes como la meditación o el yoga. Si el estrés sigue siendo un problema, considera hablar con un terapeuta.'),
+
+-- ID LLAMADA 6
+(6, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si el dolor persiste a pesar de tomar analgésicos, es esencial que acudas a un médico para que te realice un diagnóstico adecuado.'),
+(6, '¿Cuántos días debo descansar por la fiebre?', 'Se recomienda descansar durante al menos 48 horas y mantenerte bien hidratado. Si la fiebre sigue después de 72 horas, busca atención médica.'),
+(6, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Te sugerimos una ecografía y análisis de sangre para determinar posibles infecciones o problemas internos.'),
+(6, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Las técnicas de relajación como el yoga y la meditación pueden ser muy útiles para reducir el estrés. Si no mejora, consulta a un terapeuta.'),
+ 
+-- ID LLAMADA 7
+(7, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si el dolor no cede con los analgésicos, es crucial que acudas a un médico para un diagnóstico adecuado.'),
+(7, '¿Cuántos días debo descansar por la fiebre?', 'Se recomienda descansar por lo menos 48 horas, y mantenerse hidratado. Si la fiebre persiste por más de tres días, consulta con un profesional.'),
+(7, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Una ecografía y análisis de sangre son importantes para ayudar a diagnosticar infecciones o problemas internos.'),
+(7, '¿Cómo puedo reducir el estrés de forma efectiva?', 'El yoga, la meditación y los ejercicios de respiración pueden ser muy efectivos. También podrías considerar la ayuda de un terapeuta si el estrés es muy alto.'),
+
+-- ID LLAMADA 8
+(8, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si el dolor sigue sin mejorar, lo mejor es que acudas al médico para que pueda evaluar la situación y ofrecerte alternativas.'),
+(8, '¿Cuántos días debo descansar por la fiebre?', 'Es aconsejable descansar al menos 48 horas y tomar líquidos. Si la fiebre no desaparece en tres días, consulta a un médico.'),
+(8, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Podrías hacerte una ecografía y un análisis de sangre para verificar si hay infecciones o problemas en tu organismo.'),
+(8, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practica técnicas como yoga, meditación y respiración profunda. Si no ves resultados, hablar con un terapeuta podría ser beneficioso.'),
+
+-- ID LLAMADA 9
+(9, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si el dolor no se alivia, es importante que consultes a un médico para investigar la causa y obtener el tratamiento adecuado.'),
+(9, '¿Cuántos días debo descansar por la fiebre?', 'Descansa al menos 48 horas y mantente bien hidratado. Si la fiebre persiste más de tres días, busca atención médica.'),
+(9, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Una ecografía y un análisis de sangre son pruebas útiles para identificar posibles infecciones o trastornos internos.'),
+(9, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Te sugerimos practicar yoga, meditación o respiración profunda. Si el estrés persiste, un terapeuta puede ser de gran ayuda.'),
+
+-- ID LLAMADA 10
+(10, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si el dolor no mejora, lo mejor es que consultes con tu médico para obtener un diagnóstico adecuado y alternativas de tratamiento.'),
+(10, '¿Cuántos días debo descansar por la fiebre?', 'Descansa lo necesario y mantén una adecuada hidratación. Si la fiebre dura más de 72 horas, consulta a un médico.'),
+(10, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Es recomendable hacer una ecografía abdominal y análisis de sangre para evaluar posibles infecciones o problemas internos.'),
+(10, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Prueba con técnicas de relajación como yoga o meditación. Si el estrés sigue afectándote, es útil buscar apoyo de un terapeuta.'),
+
+-- ID LLAMADA 11
+(11, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si el dolor persiste, consulta a un médico para asegurarte de que no haya una condición más seria.'),
+(11, '¿Cuántos días debo descansar por la fiebre?', 'Descansa por lo menos 48 horas y mantén tu cuerpo hidratado. Si la fiebre dura más de tres días, consulta con un profesional de la salud.'),
+(11, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Una ecografía y análisis de sangre son útiles para descartar infecciones o problemas internos que puedan estar causando el dolor.'),
+(11, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practicar yoga, meditación o ejercicios de respiración te ayudará a reducir el estrés. Si no mejora, hablar con un terapeuta puede ser útil.'),
+
+-- ID LLAMADA 12
+(12, '¿Qué debo hacer si el dolor no se alivia con los analgésicos?', 'Si el dolor no se alivia, es esencial que acudas al médico para una evaluación más detallada y tratamiento adecuado.'),
+(12, '¿Cuántos días debo descansar por la fiebre?', 'Se recomienda descansar al menos 48 horas y asegurarse de estar bien hidratado. Si la fiebre persiste más de 72 horas, consulta a un médico.'),
+(12, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Una ecografía y un análisis de sangre son pruebas comunes para investigar infecciones o problemas internos que puedan estar afectando tu salud.'),
+(12, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practicar meditación, yoga o respiración profunda puede ser de gran ayuda. Si el estrés persiste, considera buscar ayuda profesional.');
 
 
 commit;

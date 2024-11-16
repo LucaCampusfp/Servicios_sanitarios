@@ -31,9 +31,10 @@ SELECT
     p.dni AS dni_paciente,
     q.pregunta AS pregunta,
     q.respuesta AS respuesta,
-    l.tipo_especialista,
+    l.tipo_derivacion,l.consejo,
     l.estado,
-    l.id_llamada
+    l.id_llamada,
+    l.llamada_molesta
 FROM 
     llamada l
 JOIN 
@@ -43,7 +44,8 @@ JOIN
 JOIN 
     preguntas q ON l.id_llamada = q.id_llamada  
 WHERE 
-    l.estado = 'PENDIENTE'
+    l.estado = 'PENDIENTE' 
+    AND l.tipo_derivacion = 'Enfermera'
 ORDER BY 
     l.id_llamada, q.id_pregunta;
 
@@ -62,4 +64,4 @@ UPDATE llamada SET consejo = 'asdas', estado = "PENDIENTE", tipo_especialista = 
 UPDATE llamada SET estado = "FINALIZADA" WHERE id_llamada = 4;
 DROP DATABASE servicio_medico;
 
-
+SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada,l.consejo,l.tipo_derivacion,l.llamada_molesta, p.dni, q.pregunta, q.respuesta, p.id_paciente FROM paciente p JOIN llamada l ON p.id_paciente = l.id_paciente JOIN trabajadores t ON l.id_trabajador = t.id_user LEFT JOIN preguntas q ON l.id_llamada = q.id_llamada WHERE l.estado = 'FINALIZADA' AND l.tipo_derivacion = 'Enfermera';
