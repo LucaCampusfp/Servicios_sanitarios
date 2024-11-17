@@ -39,6 +39,16 @@ CREATE TABLE preguntas (
     respuesta TEXT,
     FOREIGN KEY (id_llamada) REFERENCES llamada(id_llamada)
 );
+CREATE TABLE informe (
+    informe_id INT AUTO_INCREMENT PRIMARY KEY, 
+    id_trabajador INT NOT NULL,                -- Relación con trabajador
+    llamadas_atendidas INT NOT NULL,           -- Número de llamadas atendidas
+    llamadas_derivadas INT NOT NULL,           -- Número de llamadas derivadas
+    tipo_especialista VARCHAR(50),             -- Tipo de especialista
+    FOREIGN KEY (id_trabajador) REFERENCES trabajadores(id_user)
+);
+
+
 
 INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
 VALUES (1, 'Q', '1', 'Operador', 'Lunes a viernes no festivos 7:00 a 15:00');
@@ -51,6 +61,8 @@ VALUES (3, 'Carlos', 'mypassword', 'Médico', 'Sábados, domingos y festivos 7:0
 
 INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
 VALUES (4, 'Ana', 'securepass', 'Psicólogo', 'Lunes a viernes no festivos 23:00 a 7:00');
+INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
+VALUES (5, 'W', '1', 'Operador', 'Lunes a viernes no festivos 7:00 a 15:00');
 
 INSERT INTO paciente (nombre, dni, id_trabajador) 
 VALUES 
@@ -148,6 +160,11 @@ VALUES
 (12, '¿Cuántos días debo descansar por la fiebre?', 'Se recomienda descansar al menos 48 horas y asegurarse de estar bien hidratado. Si la fiebre persiste más de 72 horas, consulta a un médico.'),
 (12, '¿Qué tipo de estudios debo hacer para mi dolor?', 'Una ecografía y un análisis de sangre son pruebas comunes para investigar infecciones o problemas internos que puedan estar afectando tu salud.'),
 (12, '¿Cómo puedo reducir el estrés de forma efectiva?', 'Practicar meditación, yoga o respiración profunda puede ser de gran ayuda. Si el estrés persiste, considera buscar ayuda profesional.');
+
+INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
+VALUES (1, 20, 5, 'Operador');
+INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
+VALUES (5, 20, 5, 'Operador');
 
 
 commit;

@@ -63,5 +63,6 @@ UPDATE preguntas SET pregunta = 'HAPPY', respuesta = 'HAPPY' WHERE id_llamada = 
 UPDATE llamada SET consejo = 'asdas', estado = "PENDIENTE", tipo_especialista = "Medico" WHERE id_llamada = 3;
 UPDATE llamada SET estado = "FINALIZADA" WHERE id_llamada = 4;
 DROP DATABASE servicio_medico;
+SELECT n_usuario, t.rol , t.turno ,i.llamadas_atendidas, i.llamadas_derivadas FROM trabajadores t JOIN informe i ON t.id_user = i.id_trabajador WHERE t.id_user = 1;
 
 SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada,l.consejo,l.tipo_derivacion,l.llamada_molesta, p.dni, q.pregunta, q.respuesta, p.id_paciente FROM paciente p JOIN llamada l ON p.id_paciente = l.id_paciente JOIN trabajadores t ON l.id_trabajador = t.id_user LEFT JOIN preguntas q ON l.id_llamada = q.id_llamada WHERE l.estado = 'FINALIZADA' AND l.tipo_derivacion = 'Enfermera';
