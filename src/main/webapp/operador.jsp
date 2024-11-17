@@ -9,22 +9,82 @@
 <head>
 <meta charset="UTF-8">
 <title>Operador</title>
-<link rel="stylesheet" href="operador.css">
+<link rel="stylesheet" href="medico.css">
 </head>
 <body>
 	<% 
         // Obtener los datos de las llamadas desde la base de datos
         GestionBD gestionBD = (GestionBD) application.getAttribute("gestionBD");
         int numLlamadas = 0;
-		       
         HttpSession sesion = request.getSession(false);
         String n_usuario = (String) sesion.getAttribute("usuario");
-       
+		int id_trabajador = gestionBD.idTrabajador(n_usuario);
+		 ResultSet rs = null;
+	        try {
+	            rs = gestionBD.mostrarInforme(id_trabajador);
+	        } catch (SQLException e) {
+	            out.println("<h2>Error al obtener los datos: " + e.getMessage() + "</h2>");
+	            e.printStackTrace();
+	        }
         
     %>
 <h1 style="text-align: center;">Panel de gestión de operadores</h1>
 
+
+
 <h2>Registro de Llamadas</h2>
+
+ <div class="scroll-container">
+<ul style="margin-bottom: 35px">
+	<%
+		if(rs != null){
+			while(rs.next()){
+				
+				String trabajadorNombre = rs.getString("n_usuario");
+				String rol = rs.getString("rol");
+				String turno = rs.getString("turno");
+				String llamadas_atendidas = rs.getString("llamadas_atendidas");
+				String llamadas_derivadas = rs.getString("llamadas_derivadas");
+				
+				//out.print("&n_usuario=" + trabajadorNombre);
+                
+	            //out.print("&rol=" + rol);
+	                        
+	            //out.print("&turno=" + turno);
+	            
+	        	//out.print("&llamadas_atendidas=" + llamadas_atendidas);
+	        	
+	        	//out.print("&llamadas_derivadas=" + llamadas_derivadas);
+	%>
+		<li>
+			<p>Nombre : <%= trabajadorNombre %></p>
+			<p>Puesto : <%= rol %></p>
+			<p>Turno : <%= turno %></p>
+			<p>Llamadas Atendidas : <%= llamadas_atendidas %></p>
+			<p>llamadas Derivadas : <%= llamadas_derivadas %></p>
+			
+		
+                        	
+		
+		
+		</li>
+	<%
+				
+			}
+			
+			
+		}
+	%>
+	
+	
+	
+
+
+
+</ul>
+  </div>
+
+
     <form action="RegistroLlamadas" method="POST">
         
         <!-- Información Básica de la Llamada -->
@@ -99,10 +159,14 @@
                 <option value="FINALIZADA">FINALIZADA</option>
             </select><br><br>
         </fieldset>
+        
 
         <button type="submit">Registrar Llamada</button>
     </form>
-
+     <form action="LogOut" method="post">
+    <button type="submit">Cerrar sesión</button>
+    </form>
+	
 
 
 
