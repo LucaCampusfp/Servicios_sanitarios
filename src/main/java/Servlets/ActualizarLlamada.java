@@ -1,6 +1,7 @@
 package Servlets;
 
 import jakarta.servlet.RequestDispatcher;
+
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -30,6 +31,9 @@ public class ActualizarLlamada extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -192,9 +196,17 @@ public class ActualizarLlamada extends HttpServlet {
 		            }
 		        } else {
 		        	
+		        	
 		            boolean updatePreguntasS = gestionBD.actualizarPreguntas(llamadaId, preguntas, respuestas, idPreguntas);
-		            boolean updateLlamadas = gestionBD.updateLlamada(llamadaId,idPaciente, estado,consejo,tipo_derivacion,llamada_molesta);
+		            boolean updateLlamadas = gestionBD.updateLlamada(llamadaId,idPaciente, estado,consejo,"FINALIZADA",llamada_molesta);
 		            if (updatePreguntasS && updateLlamadas) {
+
+
+		                String n_usuario = (String) sesion.getAttribute("usuario");
+		         		int id_trabajador = gestionBD.idTrabajador(n_usuario);
+		             
+		             
+		            	gestionBD.LlamadasAtendidas(id_trabajador);
 		                System.out.println("Preguntas actualizadas exitosamente y estado paciente.");
 		            } else {
 		                System.out.println("Error al actualizar preguntas.");
@@ -230,6 +242,7 @@ public class ActualizarLlamada extends HttpServlet {
 	                		response.sendRedirect("psicologo.jsp");
 	                        break;
 	                    case "Médico":
+	                    	
 	                		response.sendRedirect("medico.jsp");
 	                        break;
 	                    default:

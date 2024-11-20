@@ -17,7 +17,40 @@
         GestionBD gestionBD = (GestionBD) application.getAttribute("gestionBD");
         ResultSet pacName = gestionBD.llamadasEnfermera();
         int numLlamadas = 0;
+        HttpSession sesion = request.getSession(false);
+        String n_usuario = (String) sesion.getAttribute("usuario");
+		int id_trabajador = gestionBD.idTrabajador(n_usuario);
+		 ResultSet rs = null;
+	        try {
+	            rs = gestionBD.mostrarMédico(id_trabajador);
+	        } catch (SQLException e) {
+	            out.println("<h2>Error al obtener los datos: " + e.getMessage() + "</h2>");
+	            e.printStackTrace();
+	        }
     %>
+    
+	<ul style="margin-bottom: 35px">
+	    <%
+	        if (rs != null) {
+	            while (rs.next()) {
+	                String trabajadorNombre = rs.getString("n_usuario");
+	                String rol = rs.getString("rol");
+	                String turno = rs.getString("turno");
+	                String llamadas_atendidas = rs.getString("llamadas_atendidas");
+	        
+	    %>
+	        <li>
+	            <p>Nombre : <%= trabajadorNombre %></p>
+	            <p>Puesto : <%= rol %></p>
+	            <p>Turno : <%= turno %></p>
+	            <p>Llamadas Atendidas : <%= llamadas_atendidas %></p>
+	
+	        </li>
+	    <%
+	            }
+	        }
+	    %>
+	</ul>
 
     <div class="scroll-container">
         <ul>
@@ -188,21 +221,21 @@
 
             <!-- Pregunta 1 y su respuesta -->
             <label for="pregunta1">Pregunta 1:</label>
-            <textarea id="pregunta1" name="pregunta1" placeholder="Escribe la pregunta aquí" required="required"><%= pregunta1 %></textarea><br><br>
+            <textarea id="pregunta1" name="pregunta1" placeholder="Escribe la pregunta aquí" disabled="disabled"><%= pregunta1 %></textarea><br><br>
 
             <label for="respuesta1">Respuesta 1:</label>
-            <textarea id="respuesta1" name="respuesta1" placeholder="Escribe la respuesta aquí"><%= respuesta1 %></textarea><br><br>
+            <textarea id="respuesta1" name="respuesta1" placeholder="Escribe la respuesta aquí" required="required"><%= respuesta1 %></textarea><br><br>
 
             <!-- Pregunta 2 y su respuesta -->
             <label for="pregunta2">Pregunta 2:</label>
-            <textarea id="pregunta2" name="pregunta2" placeholder="Escribe la pregunta aquí"><%= pregunta2 %></textarea><br><br>
+            <textarea id="pregunta2" name="pregunta2" placeholder="Escribe la pregunta aquí"disabled="disabled"><%= pregunta2 %></textarea><br><br>
 
             <label for="respuesta2">Respuesta 2:</label>
             <textarea id="respuesta2" name="respuesta2" placeholder="Escribe la respuesta aquí"><%= respuesta2 %></textarea><br><br>
 
             <!-- Pregunta 3 y su respuesta -->
             <label for="pregunta3">Pregunta 3:</label>
-            <textarea id="pregunta3" name="pregunta3" placeholder="Escribe la pregunta aquí"><%= pregunta3 %></textarea><br><br>
+            <textarea id="pregunta3" name="pregunta3" placeholder="Escribe la pregunta aquí"disabled="disabled"><%= pregunta3 %></textarea><br><br>
 
             <label for="respuesta3">Respuesta 3:</label>
             <textarea id="respuesta3" name="respuesta3" placeholder="Escribe la respuesta aquí"><%= respuesta3 %></textarea><br><br>
@@ -216,7 +249,7 @@
           </fieldset>
           <fieldset>
 			    <label for="tipo_derivacion">Tipo de derivación:</label>
-			    <select id="tipo_derivacion" name="tipo_derivacion">
+			    <select id="tipo_derivacion" name="tipo_derivacion" disabled="disabled">
 			        <option value="ninguno" <%= tipo_derivacion.equals("ninguno") ? "selected" : "" %>>Ninguno</option>
 			        <option value="Médico" <%= tipo_derivacion.equals("Médico") ? "selected" : "" %>>Médico</option>
 			        <option value="Enfermera" <%= tipo_derivacion.equals("Enfermera") ? "selected" : "" %>>Enfermera</option>
@@ -234,14 +267,7 @@
 		    </div>
 			</fieldset>
         
-        <fieldset>
-            <legend>RESOLUCIÓN FINAL DE LLAMADA</legend>
-            <label for="estado">Decisión tomada estado llamada:</label>
-            <select id="estado" name="estado" required>
-                <option value="PENDIENTE">PENDIENTE</option>
-                <option value="FINALIZADA">FINALIZADA</option>
-            </select><br><br>
-        </fieldset>
+ 
 
         <button type="submit">Registrar Llamada</button>
         

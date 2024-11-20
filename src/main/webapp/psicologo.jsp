@@ -17,7 +17,40 @@
         GestionBD gestionBD = (GestionBD) application.getAttribute("gestionBD");
         ResultSet pacName = gestionBD.llamadasPsicologo();
         int numLlamadas = 0;
+        HttpSession sesion = request.getSession(false);
+        String n_usuario = (String) sesion.getAttribute("usuario");
+		int id_trabajador = gestionBD.idTrabajador(n_usuario);
+		 ResultSet rs = null;
+	        try {
+	            rs = gestionBD.mostrarMédico(id_trabajador);
+	        } catch (SQLException e) {
+	            out.println("<h2>Error al obtener los datos: " + e.getMessage() + "</h2>");
+	            e.printStackTrace();
+	        }
     %>
+    
+	<ul style="margin-bottom: 35px">
+	    <%
+	        if (rs != null) {
+	            while (rs.next()) {
+	                String trabajadorNombre = rs.getString("n_usuario");
+	                String rol = rs.getString("rol");
+	                String turno = rs.getString("turno");
+	                String llamadas_atendidas = rs.getString("llamadas_atendidas");
+	        
+	    %>
+	        <li>
+	            <p>Nombre : <%= trabajadorNombre %></p>
+	            <p>Puesto : <%= rol %></p>
+	            <p>Turno : <%= turno %></p>
+	            <p>Llamadas Atendidas : <%= llamadas_atendidas %></p>
+	
+	        </li>
+	    <%
+	            }
+	        }
+	    %>
+	</ul>
 
     <div class="scroll-container">
         <ul>

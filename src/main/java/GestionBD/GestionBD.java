@@ -108,6 +108,19 @@ public class GestionBD {
 	    // Ejecutar la consulta y devolver el ResultSet
 	    return preparedStatement.executeQuery();	
 	}
+	public ResultSet mostrarMédico(int idUser) throws SQLException{
+		
+		String consultaSQL =
+				  "SELECT n_usuario, t.rol , t.turno ,i.llamadas_atendidas FROM trabajadores t JOIN informe i ON t.id_user = i.id_trabajador WHERE t.id_user = ?"
+			
+					        ;
+		PreparedStatement preparedStatement = this.conexion.prepareStatement(consultaSQL);
+		 // Asignar el valor al parámetro ?
+	    preparedStatement.setInt(1, idUser);
+
+	    // Ejecutar la consulta y devolver el ResultSet
+	    return preparedStatement.executeQuery();	
+	}
 	
 	
 
@@ -153,7 +166,7 @@ public class GestionBD {
 	    preparedStatement.setInt(1, idTrabajador);
 	    preparedStatement.executeUpdate();
 	}
-
+	
 	
 	public int getIdLlamada(int idPaciente, int idTrabajador) throws SQLException {
 	    String query = "SELECT id_llamada FROM llamada WHERE id_paciente = ? AND id_trabajador = ? ";

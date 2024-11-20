@@ -1,6 +1,7 @@
 package Servlets;
 
 import jakarta.servlet.RequestDispatcher;
+
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,13 +10,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import java.beans.Statement;
+
 import java.io.IOException;
-import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Clases.Trabajador;
 import GestionBD.GestionBD;
 
 /**
