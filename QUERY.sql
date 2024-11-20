@@ -66,3 +66,37 @@ DROP DATABASE servicio_medico;
 SELECT n_usuario, t.rol , t.turno ,i.llamadas_atendidas, i.llamadas_derivadas FROM trabajadores t JOIN informe i ON t.id_user = i.id_trabajador WHERE t.id_user = 1;
 
 SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada,l.consejo,l.tipo_derivacion,l.llamada_molesta, p.dni, q.pregunta, q.respuesta, p.id_paciente FROM paciente p JOIN llamada l ON p.id_paciente = l.id_paciente JOIN trabajadores t ON l.id_trabajador = t.id_user LEFT JOIN preguntas q ON l.id_llamada = q.id_llamada WHERE l.estado = 'FINALIZADA' AND l.tipo_derivacion = 'Enfermera';
+
+SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada,l.consejo,l.tipo_derivacion,l.llamada_molesta, p.dni, 
+					        q.pregunta, q.respuesta, p.id_paciente 
+					        FROM paciente p 
+					        JOIN llamada l ON p.id_paciente = l.id_paciente 
+					        JOIN trabajadores t ON l.id_trabajador = t.id_user
+					        LEFT JOIN preguntas q ON l.id_llamada = q.id_llamada WHERE l.estado = 'PENDIENTE' AND l.tipo_derivacion = 'Médico';
+
+SELECT 
+    t.n_usuario AS nombreOperador, 
+    p.nombre AS nombrePaciente, 
+    l.id_llamada, 
+    l.consejo, 
+    l.tipo_derivacion, 
+    l.llamada_molesta, 
+    p.dni, 
+    q.pregunta, 
+    q.respuesta
+FROM 
+    trabajadores t
+JOIN 
+    llamada l ON t.id_user = l.id_trabajador
+JOIN 
+    paciente p ON l.id_paciente = p.id_paciente
+LEFT JOIN 
+    preguntas q ON l.id_llamada = q.id_llamada
+WHERE 
+    l.estado = 'PENDIENTE' 
+    AND l.tipo_derivacion = 'Médico'
+    AND t.id_user = 1;
+    
+    UPDATE informe SET llamadas_atendidas = 50 WHERE id_trabajador = 2;
+    select * from informe;
+    

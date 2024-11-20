@@ -50,19 +50,21 @@ CREATE TABLE informe (
 
 
 
-INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
+INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno,llamadas_atendidas)
 VALUES (1, 'Q', '1', 'Operador', 'Lunes a viernes no festivos 7:00 a 15:00');
 
-INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
+INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno,llamadas_atendidas)
 VALUES (2, 'Maria', 'password123', 'Enfermera', 'Lunes a viernes no festivos 15:00 a 23:00');
 
-INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
-VALUES (3, 'Carlos', 'mypassword', 'Médico', 'Sábados, domingos y festivos 7:00 a 15:00');
+INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno,llamadas_atendidas)
+VALUES (3, 'Carlos', 'mypassword', 'Médico', 'Lunes a viernes no festivos 7:00 a 15:00');
 
-INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
+INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno,llamadas_atendidas)
 VALUES (4, 'Ana', 'securepass', 'Psicólogo', 'Lunes a viernes no festivos 23:00 a 7:00');
-INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
+INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno,llamadas_atendidas)
 VALUES (5, 'W', '1', 'Operador', 'Lunes a viernes no festivos 7:00 a 15:00');
+INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno,llamadas_atendidas)
+VALUES (6, 'Jose', 'mypassword', 'Médico', 'Sábados, domingos y festivos 7:00 a 15:00');
 
 INSERT INTO paciente (nombre, dni, id_trabajador) 
 VALUES 
@@ -164,7 +166,15 @@ VALUES
 INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
 VALUES (1, 20, 5, 'Operador');
 INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
+VALUES (2, 20, 5, 'Enfermera');
+INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
+VALUES (3, 20, 5, 'Médico');
+INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
+VALUES (4, 20, 5, 'Psicólogo');
+INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
 VALUES (5, 20, 5, 'Operador');
+INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
+VALUES (6, 20, 5, 'Médico');
 
 
 commit;
