@@ -241,7 +241,78 @@ VALUES
 (20, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
 (20, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
 (20, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(20, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.');
+(20, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+-- ID LLAMADA 21
+(21, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(21, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(21, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(21, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+
+-- ID LLAMADA 22
+(22, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(22, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(22, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(22, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+
+-- ID LLAMADA 23
+(23, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(23, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(23, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(23, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+
+-- ID LLAMADA 24
+(24, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(24, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(24, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(24, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+
+-- ID LLAMADA 25
+(25, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(25, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(25, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(25, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+
+-- ID LLAMADA 26
+(26, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(26, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(26, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(26, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+
+-- ID LLAMADA 27
+(27, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(27, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(27, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(27, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+
+-- ID LLAMADA 28
+(28, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(28, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(28, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(28, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+
+-- ID LLAMADA 29
+(29, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(29, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(29, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(29, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+
+-- ID LLAMADA 30
+(30, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(30, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(30, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(30, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+
+-- ID LLAMADA 31
+(31, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(31, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(31, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(31, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+
+-- ID LLAMADA 32
+(32, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(32, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(32, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(32, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.');
 
 
 INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)	
