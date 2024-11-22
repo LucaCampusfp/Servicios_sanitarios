@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
 	                        dispatcher = request.getRequestDispatcher("enfermera.jsp");
 	                        dispatcher.forward(request, response);
 	                        break;
-	                    case "Psicologo":
+	                    case "Psicólogo":
 	                        dispatcher = request.getRequestDispatcher("psicologo.jsp");
 	                        dispatcher.forward(request, response);
 	                        break;
@@ -76,6 +76,7 @@ public class Login extends HttpServlet {
 	                }
 	            } else {
 	                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No se ha encontrado rol en la sesión");
+	                response.sendRedirect("index.jsp");
 	            }
 	        } else {
 	            response.sendRedirect("index.jsp");  // Si no hay sesión, redirigir al login

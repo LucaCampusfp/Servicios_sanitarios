@@ -17,7 +17,7 @@
         GestionBD gestionBD = (GestionBD) application.getAttribute("gestionBD");
         ResultSet pacName = gestionBD.llamadasPsicologo();
         int numLlamadas = 0;
-        HttpSession sesion = request.getSession(false);
+        HttpSession sesion = request.getSession();
         String n_usuario = (String) sesion.getAttribute("usuario");
 		int id_trabajador = gestionBD.idTrabajador(n_usuario);
 		 ResultSet rs = null;
@@ -253,7 +253,7 @@
 			        <option value="ninguno" <%= tipo_derivacion.equals("ninguno") ? "selected" : "" %>>Ninguno</option>
 			        <option value="Médico" <%= tipo_derivacion.equals("Médico") ? "selected" : "" %>>Médico</option>
 			        <option value="Enfermera" <%= tipo_derivacion.equals("Enfermera") ? "selected" : "" %>>Enfermera</option>
-			        <option value="Psicologo" <%= tipo_derivacion.equals("Psicologo") ? "selected" : "" %>>Psicólogo</option>
+			        <option value="Psicologo" <%= tipo_derivacion.equals("Psicólogo") ? "selected" : "" %>>Psicólogo</option>
 			    </select><br><br>
 			    
 			    

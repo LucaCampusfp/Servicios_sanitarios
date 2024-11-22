@@ -41,7 +41,7 @@ public class LogOut extends HttpServlet {
 	                        dispatcher = request.getRequestDispatcher("enfermera.jsp");
 	                        dispatcher.forward(request, response);
 	                        break;
-	                    case "Psicologo":
+	                    case "Psicólogo":
 	                        dispatcher = request.getRequestDispatcher("psicologo.jsp");
 	                        dispatcher.forward(request, response);
 	                        break;
