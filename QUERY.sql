@@ -72,7 +72,7 @@ SELECT  t.n_usuario AS nombreOperador, p.nombre AS nombre,l.id_llamada,l.consejo
 					        FROM paciente p 
 					        JOIN llamada l ON p.id_paciente = l.id_paciente 
 					        JOIN trabajadores t ON l.id_trabajador = t.id_user
-					        LEFT JOIN preguntas q ON l.id_llamada = q.id_llamada WHERE l.estado = 'PENDIENTE' AND l.tipo_derivacion = 'Médico';
+					        LEFT JOIN preguntas q ON l.id_llamada = q.id_llamada WHERE l.estado = 'PENDIENTE' AND l.tipo_derivacion = 'Operador';
 
 SELECT 
     t.n_usuario AS nombreOperador, 
@@ -99,4 +99,22 @@ WHERE
     
     UPDATE informe SET llamadas_atendidas = 50 WHERE id_trabajador = 2;
     select * from informe;
+    
+    SELECT 
+    l.id_llamada, 
+    p.nombre AS paciente_nombre, 
+    p.dni AS paciente_dni, 
+    t.n_usuario AS trabajador_usuario,
+    t.rol AS trabajador_rol,
+    l.consejo, 
+    l.estado, 
+    l.tipo_derivacion, 
+    l.llamada_molesta
+FROM 
+    llamada l
+JOIN 
+    trabajadores t ON l.id_trabajador = t.id_user
+JOIN 
+    paciente p ON l.id_paciente = p.id_paciente;
+
     

@@ -61,6 +61,15 @@ INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
 VALUES (4, 'Ana', 'securepass', 'Psicólogo', 'Lunes a viernes no festivos 23:00 a 7:00');
 INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
 VALUES (5, 'W', '1', 'Operador', 'Lunes a viernes no festivos 7:00 a 15:00');
+INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
+VALUES (6, 'Luis', 'enfermeropass', 'Enfermera', 'Sábados, domingos y festivos 15:00 a 23:00');
+
+INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
+VALUES (7, 'Diana', 'medicopass', 'Médico', 'Sábados, domingos y festivos 15:00 a 23:00');
+
+INSERT INTO trabajadores (id_user, n_usuario, pass, rol, turno)
+VALUES (8, 'Pedro', 'psicologopass', 'Psicólogo', 'Sábados, domingos y festivos 23:00 a 7:00');
+
 
 INSERT INTO paciente (nombre, dni, id_trabajador) 
 VALUES 
@@ -68,6 +77,7 @@ VALUES
 ('María López', '98765432B',  2),
 ('Carlos García', '12344321C',  3),
 ('Laura Rodríguez', '56789012D', 4);
+
 -- Insertar llamadas
 INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_derivacion,llamada_molesta)
 VALUES 
@@ -75,49 +85,43 @@ VALUES
 (1, 1, 'Recibir reposo y tomar analgésicos', 'PENDIENTE', 'Médico','si'),
 (2, 1, 'Tomar medicación para la fiebre y seguir hidratándose', 'PENDIENTE', 'Médico','si'),
 (3, 1, 'Se recomienda realizar estudios adicionales', 'PENDIENTE', 'Médico','no'),
-(4, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
-(4, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
-(3, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
-(3, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
-(2, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
-(2, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
-(1, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
-(1, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no');
-
+(4, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(4, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(3, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(3, 1, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(2, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(2, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(1, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no'),
+(1, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera','no');
 
 -- Llamadas de tipo Psicólogo
 INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_derivacion, llamada_molesta)
 VALUES 
-(4, 4, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
-(3, 4, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
-(2, 4, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
-(1, 4, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no');
+(4, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
+(3, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
+(2, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
+(1, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no');
 
--- Llamadas de tipo Operador
-INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_derivacion, llamada_molesta)
-VALUES 
-(1, 1, 'Recibir reposo y tomar analgésicos', 'PENDIENTE', 'Operador', 'si'),
-(1, 1, 'Recibir reposo y tomar analgésicos', 'PENDIENTE', 'Operador', 'si'),
-(2, 1, 'Tomar medicación para la fiebre y seguir hidratándose', 'PENDIENTE', 'Operador', 'si'),
-(3, 1, 'Se recomienda realizar estudios adicionales', 'PENDIENTE', 'Operador', 'no');
+
 
 INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_derivacion, llamada_molesta)
 VALUES 
-(4, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
-(4, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
-(3, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
-(3, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
-(2, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
-(2, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
-(1, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
-(1, 2, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no');
+(4, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
+(4, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
+(3, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
+(3, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
+(2, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
+(2, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
+(1, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no'),
+(1, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Enfermera', 'no');
+
 -- Llamadas de tipo Psicólogo
 INSERT INTO llamada (id_paciente, id_trabajador, consejo, estado, tipo_derivacion, llamada_molesta)
 VALUES 
-(4, 4, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
-(3, 4, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
-(2, 4, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
-(1, 4, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no');
+(4, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
+(3, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
+(2, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no'),
+(1, 5, 'Realizar ejercicios de relajación para reducir el estrés', 'PENDIENTE', 'Psicólogo', 'no');
 
 
 -- Insertar preguntas
@@ -288,52 +292,29 @@ VALUES
 (28, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
 (28, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
 (28, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(28, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
+(28, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.');
 
--- ID LLAMADA 29
-(29, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(29, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(29, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(29, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-
--- ID LLAMADA 30
-(30, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(30, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(30, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(30, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-
--- ID LLAMADA 31
-(31, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(31, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(31, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(31, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-
--- ID LLAMADA 32
-(32, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(32, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(32, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.'),
-(32, '¿Puedo hacer ejercicios de relajación si tengo problemas de espalda?', 'Es importante hablar con un médico o fisioterapeuta antes de comenzar nuevos ejercicios, pero muchos ejercicios de relajación pueden ser adaptados a tus necesidades.');
 
 
 INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)	
-VALUES (1, 20, 5, 'Operador');
+VALUES (1, 9, 23, 'Operador');
 INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
-VALUES (5, 20, 5, 'Operador');
+VALUES (5, 23, 23, 'Operador');
 
 INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)	
-VALUES (1, 20, 5, 'Médico');
+VALUES (3, 20, 5, 'Médico');
 INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
-VALUES (5, 20, 5, 'Médico');
+VALUES (7, 20, 5, 'Médico');
 
 INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)	
-VALUES (1, 20, 5, 'Enfermera');
+VALUES (2, 20, 5, 'Enfermera');
 INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
-VALUES (5, 20, 5, 'Enfermera');
+VALUES (6, 20, 5, 'Enfermera');
 
 INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)	
-VALUES (1, 20, 5, 'Psicólogo');
+VALUES (8, 20, 5, 'Psicólogo');
 INSERT INTO informe (id_trabajador, llamadas_atendidas, llamadas_derivadas, tipo_especialista)
-VALUES (5, 20, 5, 'Enfermera');
+VALUES (4, 20, 5, 'Enfermera');
 
 
 

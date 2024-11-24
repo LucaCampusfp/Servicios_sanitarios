@@ -205,7 +205,7 @@
             <label for="id_llamada">ID de la llamada</label>
             <input type="text" id="id_llamada" name="id_llamada" required value="<%= idllamada  %>" readonly><br><br>
             
-            <label for="operador">Operador que atiende:</label>
+            <label for="operador">Operador que le ha atendido:</label>
             <input type="text" id="operador" name="operador" required value="<%= operador %>"readonly><br><br>
 
             <label for="nombre_llamante">Nombre de la persona que llama:</label>

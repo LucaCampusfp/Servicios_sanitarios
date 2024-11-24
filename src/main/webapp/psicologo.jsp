@@ -205,7 +205,7 @@
             <label for="id_llamada">ID de la llamada</label>
             <input type="text" id="id_llamada" name="id_llamada" required value="<%= idllamada  %>" readonly><br><br>
             
-            <label for="operador">Operador que atiende:</label>
+            <label for="operador">Operador que le ha atendido:</label>
             <input type="text" id="operador" name="operador" required value="<%= operador %>"readonly><br><br>
 
             <label for="nombre_llamante">Nombre de la persona que llama:</label>
@@ -221,21 +221,21 @@
 
             <!-- Pregunta 1 y su respuesta -->
             <label for="pregunta1">Pregunta 1:</label>
-            <textarea id="pregunta1" name="pregunta1" placeholder="Escribe la pregunta aquí" required="required"><%= pregunta1 %></textarea><br><br>
+            <textarea id="pregunta1" name="pregunta1" placeholder="Escribe la pregunta aquí" disabled="disabled"><%= pregunta1 %></textarea><br><br>
 
             <label for="respuesta1">Respuesta 1:</label>
             <textarea id="respuesta1" name="respuesta1" placeholder="Escribe la respuesta aquí"><%= respuesta1 %></textarea><br><br>
 
             <!-- Pregunta 2 y su respuesta -->
             <label for="pregunta2">Pregunta 2:</label>
-            <textarea id="pregunta2" name="pregunta2" placeholder="Escribe la pregunta aquí"><%= pregunta2 %></textarea><br><br>
+            <textarea id="pregunta2" name="pregunta2" placeholder="Escribe la pregunta aquí"disabled="disabled"><%= pregunta2 %></textarea><br><br>
 
             <label for="respuesta2">Respuesta 2:</label>
             <textarea id="respuesta2" name="respuesta2" placeholder="Escribe la respuesta aquí"><%= respuesta2 %></textarea><br><br>
 
             <!-- Pregunta 3 y su respuesta -->
             <label for="pregunta3">Pregunta 3:</label>
-            <textarea id="pregunta3" name="pregunta3" placeholder="Escribe la pregunta aquí"><%= pregunta3 %></textarea><br><br>
+            <textarea id="pregunta3" name="pregunta3" placeholder="Escribe la pregunta aquí"disabled="disabled"><%= pregunta3 %></textarea><br><br>
 
             <label for="respuesta3">Respuesta 3:</label>
             <textarea id="respuesta3" name="respuesta3" placeholder="Escribe la respuesta aquí"><%= respuesta3 %></textarea><br><br>
