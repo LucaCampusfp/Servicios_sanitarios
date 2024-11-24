@@ -108,6 +108,8 @@ public class GestionBD {
 	    // Ejecutar la consulta y devolver el ResultSet
 	    return preparedStatement.executeQuery();	
 	}
+	
+	
 	public ResultSet mostrarMédico(int idUser) throws SQLException{
 		
 		String consultaSQL =
@@ -182,6 +184,9 @@ public class GestionBD {
 	        }
 	    }
 	}
+	
+	
+	
 	public int getIdLlamadaPendiente(int idPaciente, int idTrabajador, String estado) throws SQLException {
 	    String query = "SELECT id_llamada FROM llamada WHERE id_paciente = ? AND id_trabajador = ? AND estado = ?";
 	    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {
@@ -300,6 +305,7 @@ public class GestionBD {
 	        }
 	    }
 	}
+	
 	public int idPaciente(String dni) throws SQLException {
 	    String query = "SELECT id_paciente FROM paciente WHERE dni = ?";
 	    try (PreparedStatement statement = this.conexion.prepareStatement(query)) {

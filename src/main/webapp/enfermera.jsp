@@ -266,6 +266,14 @@
 			    <input type="radio" id="no_molesta" name="llamada_molesta" value="no" <%= "no".equals(llamada_molesta) ? "checked" : "" %>>
 		    </div>
 			</fieldset>
+			    <fieldset>
+            <legend>RESOLUCIÓN FINAL DE LLAMADA</legend>
+            <label for="estado">Decisión tomada estado llamada:</label>
+            <select id="estado" name="estado" required>
+                <option value="PENDIENTE">PENDIENTE</option>
+                <option value="FINALIZADA">FINALIZADA</option>
+            </select><br><br>
+        </fieldset>
         
  
 

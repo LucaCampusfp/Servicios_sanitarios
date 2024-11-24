@@ -39,7 +39,6 @@ public class Login extends HttpServlet {
 		ServletContext contextApp = this.getServletContext();
 		GestionBD gestionBD = new GestionBD();
 		
-		
 		contextApp.setAttribute("gestionBD", gestionBD);
 		
 	}
@@ -71,15 +70,19 @@ public class Login extends HttpServlet {
 	                        dispatcher.forward(request, response);
 	                        break;
 	                    default:
+	                    	dispatcher = request.getRequestDispatcher("operador.jsp");
+	 				        dispatcher.forward(request, response);
 	                        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Rol no autorizado");
 	                        break;
 	                }
 	            } else {
 	                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No se ha encontrado rol en la sesión");
-	                response.sendRedirect("index.jsp");
+	                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			        dispatcher.forward(request, response);
 	            }
 	        } else {
-	            response.sendRedirect("index.jsp");  // Si no hay sesión, redirigir al login
+	        	 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			        dispatcher.forward(request, response);// Si no hay sesión, redirigir al login
 	        }
 	}
 
@@ -96,8 +99,6 @@ public class Login extends HttpServlet {
 		ServletContext contextApp = this.getServletContext();
 		GestionBD gestionBD = (GestionBD) contextApp.getAttribute("gestionBD");
 		HttpSession sesion = request.getSession();
-		
-		
 		
 		ResultSet rs ;
 	
